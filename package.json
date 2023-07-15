@@ -1,0 +1,72 @@
+{
+  "name": "fm-entertainment-web-app",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardcyrus/fm-entertainment-web-app.git"
+  },
+  "keywords": [],
+  "author": "Richard Cyrus <richard.cyrus@rcyrus.com> (https://www.richardcyrus.com)",
+  "bugs": {
+    "url": "https://github.com/richardcyrus/fm-entertainment-web-app/issues"
+  },
+  "homepage": "https://github.com/richardcyrus/fm-entertainment-web-app#readme",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "concurrently --raw npm:lint:*",
+    "lint:code": "next lint",
+    "lint:css": "stylelint './**/*.css' --fix --cache --cache-location ./node_modules/.cache/stylelint",
+    "format": "prettier --write './**/*.{css,js,jsx,ts,tsx,json.md}'",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.10",
+    "next": "13.4.10",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.0.1",
+    "concurrently": "^8.2.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "postcss": "^8.4.26",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.0.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.0.0",
+    "stylelint": "^15.10.1",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-order": "^6.0.3"
+  },
+  "browserslist": {
+    "production": [
+      ">= 0.5%",
+      "last 2 major versions",
+      "not dead",
+      "Chrome >= 60",
+      "Firefox >= 60",
+      "Firefox ESR",
+      "iOS >= 12",
+      "Safari >= 12",
+      "not Explorer <= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 edge version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

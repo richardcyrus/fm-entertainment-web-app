@@ -129,7 +129,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+/coverage
 
 # nyc test coverage
 .nyc_output
@@ -217,10 +217,9 @@ cypress/downloads/
 .vercel
 .output
 
-/build/
-/public/build
-/api/index.js
-/api/index.js.map
-app/styles
+/build
 .stylelintcache
-/postgres-data
+
+*.tsbuildinfo
+next-env.d.ts
+*.pem
