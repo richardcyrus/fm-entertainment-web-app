@@ -1,4 +1,4 @@
-@import url("./reset.css");
+@import url('./reset.css');
 
 @custom-media: --viewport-xs: (width < 36rem);
 @custom-media: --viewport-sm: (width >= 36rem);

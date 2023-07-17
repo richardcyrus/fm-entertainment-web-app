@@ -44,6 +44,12 @@ Users should be able to:
 - [How to Test User Interactions Using the React Testing Library](https://www.freecodecamp.org/news/how-to-test-user-interactions-in-react/)
 - [NextJS 12 & 13 SVG Embed.md](https://gist.github.com/lukebussey/8387bb038629dccc01a62487614f44df)
 - [[Next.js 13.3.0] Upgrade breaks @svgr/webpack in appDir](https://github.com/vercel/next.js/issues/48177#issuecomment-1557354538)
+- [Testing](https://nextjs.org/docs/pages/building-your-application/optimizing/testing#playwright)
+- [How To Set Up Next.JS With Jest, React Testing Library and Playwright](https://blog.jarrodwatts.com/how-to-set-up-nextjs-with-jest-react-testing-library-and-playwright)
+- [Caching dependencies to speed up workflows](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+- [Jest With GitHub Actions](https://blog.dennisokeeffe.com/blog/2021-10-27-jest-with-github-actions)
+- [Continuous Integration with Jest Tests and Github Actions](https://joelhooks.com/jest-and-github-actions/)
+- [Run your GitHub Actions locally 🚀](https://github.com/nektos/act)
 
 ## Author
 

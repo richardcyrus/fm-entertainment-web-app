@@ -107,7 +107,7 @@ tags
 #
 # Project ignores
 #
-# .idea
+.idea
 .history
 *.map
 session.sqlite
@@ -223,3 +223,10 @@ cypress/downloads/
 *.tsbuildinfo
 next-env.d.ts
 *.pem
+/test-results/
+/tests-examples/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/
