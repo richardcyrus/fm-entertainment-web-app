@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './global.css'
+import { Navigation } from '@/components/Navigation'
 
 const outfit = Outfit({
   weight: ['200', '500'],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${outfit.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        <main>{children}</main>
+      </body>
     </html>
   )
 }

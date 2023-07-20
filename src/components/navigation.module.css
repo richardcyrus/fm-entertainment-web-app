@@ -1,0 +1,43 @@
+.navigation {
+  background-color: var(--color-semi-dark-blue);
+  min-height: 3.5rem;
+}
+
+.navWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1.13rem;
+  padding-inline: 1rem;
+}
+
+.logo {
+  height: 27px;
+  width: 33px;
+}
+
+.navItems {
+  display: inline-flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.avatar {
+  border: 1px solid var(--color-white);
+  border-radius: 50%;
+  height: 24px;
+  object-fit: contain;
+  position: relative;
+  width: 24px;
+}
+
+.active svg path {
+  fill: var(--color-white);
+}
