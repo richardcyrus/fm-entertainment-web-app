@@ -17,12 +17,16 @@ export function Navigation() {
   return (
     <nav className={styles.navigation}>
       <div className={styles.navWrapper}>
-        <Link href="/">
+        <Link href="/" aria-label="Entertainment Web App Home">
           <Logo className={styles.logo} />
         </Link>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href="/" className={pathname === '/' ? styles.active : ''}>
+            <Link
+              href="/"
+              className={pathname === '/' ? styles.active : ''}
+              aria-label="Go to home"
+            >
               <NavHomeIcon className={styles.navIcon} />
             </Link>
           </li>
@@ -30,6 +34,7 @@ export function Navigation() {
             <Link
               href="/movies"
               className={pathname.startsWith('/movies') ? styles.active : ''}
+              aria-label="Go to movies"
             >
               <NavMoviesIcon className={styles.navIcon} />
             </Link>
@@ -38,6 +43,7 @@ export function Navigation() {
             <Link
               href="/tv-series"
               className={pathname.startsWith('/tv-series') ? styles.active : ''}
+              aria-label="Go to TV series"
             >
               <NavTVSeriesIcon className={styles.navIcon} />
             </Link>
@@ -48,13 +54,19 @@ export function Navigation() {
               className={
                 pathname.startsWith('/bookmarked') ? styles.active : ''
               }
+              aria-label="Go to bookmarked videos"
             >
               <NavBookmarkIcon className={styles.navIcon} />
             </Link>
           </li>
         </ul>
         <div className={styles.avatar}>
-          <Image src={avatarImage} alt="" fill />
+          <Image
+            src={avatarImage}
+            alt=""
+            fill
+            sizes="(max-width: 576px) 24px, (min-width: 768px) 32px, (min-width: 1200px) 40px, 40px"
+          />
         </div>
       </div>
     </nav>
