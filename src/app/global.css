@@ -1,30 +1,23 @@
 @import url('./reset.css');
 
-@custom-media: --viewport-xs: (width < 36rem);
-@custom-media: --viewport-sm: (width >= 36rem);
-@custom-media: --viewport-md: (width >= 48rem);
-@custom-media: --viewport-lg: (width >= 62rem);
-@custom-media: --viewport-xl: (width >= 75rem);
-@custom-media: --viewport-xxl: (width >= 87.5rem);
-
 :root {
+  --color-dark-blue: hsl(233deg 30% 9%);
+  --color-greyish-blue: hsl(223deg 23% 46%);
   --color-red: hsl(0deg 97% 63%);
-  --color-black: hsl(233deg 30% 9%);
-  --color-light-blue: hsl(223deg 23% 46%);
-  --color-dark-blue: hsl(223deg 36% 14%);
+  --color-semi-dark-blue: hsl(223deg 36% 14%);
   --color-white: hsl(0deg 0% 100%);
+  --font-size-body-md: 0.9375rem;
+  --font-size-body-sm: 0.8125rem;
   --font-size-heading-lg: 2rem;
   --font-size-heading-md: 1.5rem;
   --font-size-heading-sm: 1.5rem;
   --font-size-heading-xs: 1.125rem;
-  --font-size-body-md: 0.9375rem;
-  --font-size-body-sm: 0.8125rem;
   --font-weight-light: 200;
   --font-weight-medium: 500;
 }
 
 html {
-  background-color: var(--color-black);
+  background-color: var(--color-dark-blue);
 }
 
 body {

@@ -50,6 +50,9 @@ Users should be able to:
 - [Jest With GitHub Actions](https://blog.dennisokeeffe.com/blog/2021-10-27-jest-with-github-actions)
 - [Continuous Integration with Jest Tests and Github Actions](https://joelhooks.com/jest-and-github-actions/)
 - [Run your GitHub Actions locally 🚀](https://github.com/nektos/act)
+- [Jest - SVGR](https://react-svgr.com/docs/jest/)
+- [Avoid jest svg failures using NextJS + @svgr/webpack](https://github.com/vercel/next.js/discussions/42535)
+- [Avoiding React act warning when accessibility testing next/link with jest-axe](https://www.benmvp.com/blog/avoiding-react-act-warning-when-accessibility-testing-next-link-jest-axe/)
 
 ## Author
 
