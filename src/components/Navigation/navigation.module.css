@@ -1,6 +1,21 @@
 .navigation {
   background-color: var(--color-semi-dark-blue);
   min-height: 3.5rem;
+
+  @media screen and (width >= 48em) {
+    border-radius: 10px;
+    margin-block-start: 1.5rem;
+    margin-inline-end: 1.5rem;
+    margin-inline-start: 1.5rem;
+  }
+
+  @media screen and (width >= 75em) {
+    border-radius: 20px;
+    height: 60rem;
+    margin-block-start: 2rem;
+    margin-inline-start: 2rem;
+    max-width: 6rem;
+  }
 }
 
 .navWrapper {
@@ -9,24 +24,60 @@
   justify-content: space-between;
   padding-block: 1.13rem;
   padding-inline: 1rem;
+
+  @media screen and (width >= 48em) {
+    padding-block: 1.5rem;
+    padding-inline-end: 1rem;
+    padding-inline-start: 1.5rem;
+  }
+
+  @media screen and (width >= 75em) {
+    display: block;
+    min-height: 100%;
+    padding-block-end: 2rem;
+    padding-block-start: 2rem;
+    padding-inline: 2rem;
+    position: relative;
+  }
 }
 
 .logo {
   height: 20px;
   width: 25px;
+
+  @media screen and (width >= 48em) {
+    height: 1.6rem;
+    width: 2rem;
+  }
 }
 
 .navItems {
-  display: inline-flex;
+  display: flex;
   gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @media screen and (width >= 48em) {
+    gap: 2rem;
+  }
+
+  @media screen and (width >= 75em) {
+    align-items: center;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-block-start: 4.69rem;
+  }
 }
 
 .navIcon {
   height: 16px;
   width: 16px;
+
+  @media screen and (width >= 48em) {
+    height: 20px;
+    width: 20px;
+  }
 }
 
 .avatar {
@@ -36,6 +87,17 @@
   object-fit: contain;
   position: relative;
   width: 24px;
+
+  @media screen and (width >= 48em) {
+    height: 32px;
+    width: 32px;
+  }
+
+  @media screen and (width >= 75em) {
+    bottom: -35rem;
+    height: 40px;
+    width: 40px;
+  }
 }
 
 .active svg path {

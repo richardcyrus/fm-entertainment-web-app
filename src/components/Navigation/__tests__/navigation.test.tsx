@@ -10,6 +10,33 @@ jest.mock('next/navigation', () => ({
 }))
 
 describe('Navigation', () => {
+  const links = [
+    {
+      title: 'Home',
+      options: { name: /go to home/i },
+      attr: 'href',
+      value: '/',
+    },
+    {
+      title: 'Movies',
+      options: { name: /go to movies/i },
+      attr: 'href',
+      value: '/movies',
+    },
+    {
+      title: 'TV Series',
+      options: { name: /go to tv series/i },
+      attr: 'href',
+      value: '/tv-series',
+    },
+    {
+      title: 'Bookmarked',
+      options: { name: /go to bookmarked videos/i },
+      attr: 'href',
+      value: '/bookmarked',
+    },
+  ]
+
   it('renders a navigation landmark', async () => {
     const { container } = render(<Navigation />)
 
@@ -19,47 +46,14 @@ describe('Navigation', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('contains a Home link', () => {
-    render(<Navigation />)
+  links.forEach((link) => {
+    it(`contains a ${link.title} link`, () => {
+      render(<Navigation />)
 
-    const link = screen.getByRole('link', {
-      name: /go to home/i,
+      const linkEl = screen.getByRole('link', link.options)
+
+      expect(linkEl).toBeInTheDocument()
+      expect(linkEl).toHaveAttribute(link.attr, link.value)
     })
-
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/')
-  })
-
-  it('contains a Movies link', () => {
-    render(<Navigation />)
-
-    const link = screen.getByRole('link', {
-      name: /go to movies/i,
-    })
-
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/movies')
-  })
-
-  it('contains a TV series link', () => {
-    render(<Navigation />)
-
-    const link = screen.getByRole('link', {
-      name: /go to tv series/i,
-    })
-
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/tv-series')
-  })
-
-  it('contains a Bookmarked link', () => {
-    render(<Navigation />)
-
-    const link = screen.getByRole('link', {
-      name: /go to bookmarked videos/i,
-    })
-
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/bookmarked')
   })
 })
