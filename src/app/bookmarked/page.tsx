@@ -1,3 +1,10 @@
+import { SearchBar } from '@/components/SearchBar'
+
 export default function Bookmarked() {
-  return <p>Bookmarked Videos</p>
+  return (
+    <>
+      <SearchBar label="Search for bookmarked shows" category="Bookmarked" />
+      <p>Bookmarked Videos</p>
+    </>
+  )
 }

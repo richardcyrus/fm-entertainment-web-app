@@ -65,3 +65,39 @@ body {
 .body-sm {
   font-size: var(--font-size-body-sm);
 }
+
+.search-container {
+  margin-block-start: 1.625em;
+  margin-inline: 1em;
+
+  @media screen and (width >= 48em) {
+    margin-block-start: 2.3em;
+    margin-inline: 1.5em;
+  }
+
+  @media screen and (width >= 75em) {
+    margin-block-start: 4em;
+    margin-inline-start: 0;
+  }
+}
+
+input {
+  caret-color: var(--color-red);
+  font-size: 16px;
+  font-size: max(16px, 1rem);
+}
+
+input[type='search']::placeholder {
+  color: rgb(255 255 255 / 50%);
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0;
+
+  @media screen and (width >= 48em) {
+    font-size: 1.5rem;
+  }
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+}
