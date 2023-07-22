@@ -1,13 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
-import { Navigation } from '@/components/Navigation'
 
-jest.mock('next/navigation', () => ({
-  usePathname: () => {
-    return ''
-  },
-}))
+import { Navigation } from '@/components/Navigation'
 
 describe('Navigation', () => {
   const links = [
