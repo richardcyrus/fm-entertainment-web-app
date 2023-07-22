@@ -27,6 +27,13 @@ body {
   font-weight: var(--font-weight-light);
 }
 
+.page-container {
+  @media screen and (width >= 75em) {
+    display: grid;
+    grid-template-columns: 10.25rem 1fr;
+  }
+}
+
 .heading-lg {
   color: var(--color-white);
   font-size: var(--font-size-heading-lg);
