@@ -1,3 +1,10 @@
+import { SearchBar } from '@/components/SearchBar'
+
 export default function Home() {
-  return <p>Home page</p>
+  return (
+    <>
+      <SearchBar label="Search for movies or TV series" category="All" />
+      <p>Home page</p>
+    </>
+  )
 }

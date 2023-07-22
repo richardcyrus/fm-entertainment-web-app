@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
+
 import './global.css'
 import { Navigation } from '@/components/Navigation'
 
@@ -22,8 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable}`}>
       <body>
-        <Navigation />
-        <main>{children}</main>
+        <div className="page-container">
+          <header>
+            <Navigation />
+          </header>
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   )

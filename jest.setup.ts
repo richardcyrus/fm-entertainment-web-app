@@ -2,6 +2,7 @@
 
 import '@testing-library/jest-dom/extend-expect'
 import 'jest-axe/extend-expect'
+import mockRouter from 'next-router-mock'
 
 // @see: https://www.benmvp.com/blog/avoiding-react-act-warning-when-accessibility-testing-next-link-jest-axe/
 // In order to run `jest-axe` assertions for components containing
@@ -10,6 +11,8 @@ import 'jest-axe/extend-expect'
 import 'react-intersection-observer/test-utils'
 
 import { defaultFallbackInView } from 'react-intersection-observer'
+
+import { MockNextNavigation } from './__mocks__/next-navigation'
 
 // `react-intersection-observer/test-utils` will add a mock
 // `IntersectionObserver` automatically in every `beforeEach()`.
@@ -21,3 +24,9 @@ global.IntersectionObserver = jest.fn()
 // `false` so that `jest-axe` assertions will pass without needing
 // `act()`.
 defaultFallbackInView(false)
+
+jest.mock('next/navigation', () => MockNextNavigation)
+
+beforeAll(() => {
+  mockRouter.setCurrentUrl('/')
+})

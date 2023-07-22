@@ -1,0 +1,41 @@
+.searchForm {
+  align-items: center;
+  display: flex;
+}
+
+.searchIcon {
+  height: 18px;
+  margin-inline-end: 1.18em;
+  width: 18px;
+
+  @media screen and (width >= 48em) {
+    height: 24px;
+    width: 24px;
+  }
+
+  @media screen and (width >= 75em) {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.searchInput {
+  background-color: var(--color-dark-blue);
+  border: none;
+  color: var(--color-white);
+  font-family: var(--font-outfit);
+  font-weight: var(--font-weight-light);
+  min-width: 90%;
+  padding: 0.25em 0.5em 0.25em 0;
+
+  &:not(textarea) {
+    height: 2.25rem; /* 1.25rem */
+    line-height: 1;
+  }
+
+  &:focus {
+    border-bottom: 1px solid;
+    border-color: var(--color-greyish-blue);
+    outline: 1px solid transparent;
+  }
+}
