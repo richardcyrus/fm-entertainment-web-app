@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Video {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  thumbnail    Thumbnail
+  year         Int
+  category     String
+  rating       String
+  isBookmarked Boolean
+  isTrending   Boolean
+}
+
+type ThumbnailURLs {
+  small  String?
+  medium String?
+  large  String?
+}
+
+type Thumbnail {
+  trending ThumbnailURLs?
+  regular  ThumbnailURLs?
+}

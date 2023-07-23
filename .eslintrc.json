@@ -16,12 +16,6 @@
     }
   ],
   "rules": {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
-    ],
     "import/prefer-default-export": 0,
     "import/first": "error",
     "import/newline-after-import": "error",
