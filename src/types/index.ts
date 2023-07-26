@@ -1,6 +1,8 @@
-export type SearchBarProps = {
+export type ShowCategory = 'All' | 'Movies' | 'TV Series' | 'Bookmarked'
+
+export type SearchBar = {
   label: string
-  category: 'All' | 'Movies' | 'TV Series' | 'Bookmarked'
+  category: ShowCategory
 }
 
 export type VideoCardProps = {

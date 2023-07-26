@@ -6,11 +6,11 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import SearchIcon from '@/assets/icon-search.svg'
 import useDebounce from '@/hooks/useDebounce'
-import type { SearchBarProps } from '@/types'
+import type { SearchBar } from '@/types'
 
 import styles from './searchbar.module.css'
 
-export function SearchBar({ label, category }: SearchBarProps) {
+export function SearchBar({ label, category }: SearchBar) {
   const [searchTerm, setSearchTerm] = useState<string>('')
 
   const pathname = usePathname()
