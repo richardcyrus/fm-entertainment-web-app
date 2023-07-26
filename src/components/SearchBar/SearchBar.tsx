@@ -15,6 +15,8 @@ export function SearchBar({ label, category }: SearchBar) {
 
   const pathname = usePathname()
   const router = useRouter()
+  const searchParams = new URLSearchParams()
+  searchParams.append('search', category)
 
   const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -23,7 +25,8 @@ export function SearchBar({ label, category }: SearchBar) {
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   if (debouncedSearchTerm !== '') {
-    router.push(`${pathname}?search=${category}&term=${searchTerm}`)
+    searchParams.append('term', searchTerm)
+    router.push(`${pathname}?${searchParams.toString()}`)
   }
 
   return (

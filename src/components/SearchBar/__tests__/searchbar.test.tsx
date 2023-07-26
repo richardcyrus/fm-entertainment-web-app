@@ -43,6 +43,9 @@ describe('Search Bar', () => {
     await waitFor(() => {
       expect(expectedRouterPush).toHaveBeenCalledTimes(1)
     })
+    expect(expectedRouterPush).toHaveBeenCalledWith(
+      '/?search=All&term=Beyond+Earth'
+    )
     expect(searchBox).toHaveValue('Beyond Earth')
   })
 })
