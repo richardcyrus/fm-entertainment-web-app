@@ -6,15 +6,17 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import SearchIcon from '@/assets/icon-search.svg'
 import useDebounce from '@/hooks/useDebounce'
-import type { SearchBarProps } from '@/types'
+import type { SearchBar } from '@/types'
 
 import styles from './searchbar.module.css'
 
-export function SearchBar({ label, category }: SearchBarProps) {
+export function SearchBar({ label, category }: SearchBar) {
   const [searchTerm, setSearchTerm] = useState<string>('')
 
   const pathname = usePathname()
   const router = useRouter()
+  const searchParams = new URLSearchParams()
+  searchParams.append('search', category)
 
   const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -23,7 +25,8 @@ export function SearchBar({ label, category }: SearchBarProps) {
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   if (debouncedSearchTerm !== '') {
-    router.push(`${pathname}?search=${category}&term=${searchTerm}`)
+    searchParams.append('term', searchTerm)
+    router.push(`${pathname}?${searchParams.toString()}`)
   }
 
   return (
