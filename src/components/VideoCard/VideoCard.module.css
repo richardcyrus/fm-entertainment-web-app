@@ -1,0 +1,110 @@
+.card {
+  position: relative;
+}
+
+.cardImage {
+  border-radius: 8px;
+  height: 110px;
+  overflow: hidden;
+  width: 164px;
+
+  @media screen and (width >= 48em) {
+    height: 140px;
+    width: 220px;
+  }
+
+  @media screen and (width >= 75em) {
+    height: 174px;
+    width: 280px;
+  }
+}
+
+.bookmark {
+  align-items: center;
+  background-color: var(--color-dark-blue);
+  border-radius: 50%;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  left: 7.75rem;
+  opacity: 0.5;
+  position: absolute;
+  top: 0.5rem;
+  width: 32px;
+
+  @media screen and (width >= 48em) {
+    left: 10.75rem;
+    top: 1rem;
+  }
+
+  @media screen and (width >= 75em) {
+    left: 14.5rem;
+  }
+}
+
+.bookmarkIcon {
+  height: 0.875em;
+  width: 0.72938em;
+}
+
+.cardBody {
+  position: relative;
+}
+
+.videoInfo {
+  margin-block-start: 0.5rem;
+}
+
+.videoMeta {
+  align-items: center;
+  display: flex;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0;
+  opacity: 0.75;
+
+  @media screen and (width >= 48em) {
+    font-size: 0.8125rem;
+  }
+}
+
+.bullet {
+  padding-inline: 0.375rem;
+
+  @media screen and (width >= 48em) {
+    padding-inline: 0.5rem;
+  }
+}
+
+.categoryIconContainer {
+  display: inline-block;
+}
+
+.categoryIcon {
+  height: 10px;
+  width: 10px;
+
+  @media screen and (width >= 48em) {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+.categoryName {
+  padding-inline-start: 0.25rem;
+
+  @media screen and (width >= 48em) {
+    padding-inline-start: 0.375rem;
+  }
+}
+
+.videoTitle {
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0;
+
+  @media screen and (width >= 48em) {
+    font-size: 1.125rem;
+  }
+}
