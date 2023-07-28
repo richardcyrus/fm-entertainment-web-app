@@ -1,18 +1,17 @@
 .card {
-  border-radius: 8px;
-  height: 140px;
-  overflow: hidden;
   position: relative;
   width: 240px;
 
   @media screen and (width >= 48em) {
-    height: 230px;
     width: 470px;
   }
 }
 
 .cardImage {
+  border-radius: 8px;
   height: 140px;
+  overflow: hidden;
+  position: relative;
   width: 240px;
 
   @media screen and (width >= 48em) {
@@ -33,6 +32,7 @@
   position: absolute;
   top: 0.5rem;
   width: 32px;
+  z-index: 20;
 
   @media screen and (width >= 48em) {
     left: 25.875rem;

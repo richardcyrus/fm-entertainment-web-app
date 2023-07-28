@@ -6,21 +6,31 @@ export type SearchBarProps = {
 }
 
 export type VideoCardProps = {
+  id?: string
   title: string
   thumbnail: {
-    trending?: {
-      small: string
-      large: string
-    }
-    regular: {
-      small: string
-      medium: string
-      large: string
-    }
+    trending:
+      | ({
+          small: string | null
+          medium: string | null
+          large: string | null
+        } & {})
+      | null
+    regular:
+      | ({
+          small: string | null
+          medium: string | null
+          large: string | null
+        } & {})
+      | null
   }
   year: number
   category: string
   rating: string
   isBookmarked: boolean
   isTrending: boolean
+}
+
+export type TrendingRowProps = {
+  shows: VideoCardProps[]
 }

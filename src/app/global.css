@@ -30,7 +30,23 @@ body {
 .page-container {
   @media screen and (width >= 75em) {
     display: grid;
-    grid-template-columns: 10.25rem 1fr;
+    grid-template-areas: 'nav main';
+    grid-template-columns: 10.25rem minmax(0, 1fr);
+    min-width: 0;
+  }
+}
+
+header {
+  @media screen and (width >= 75em) {
+    grid-area: nav;
+  }
+}
+
+main {
+  @media screen and (width >= 75em) {
+    grid-area: main;
+    min-width: 0;
+    overflow: hidden;
   }
 }
 
