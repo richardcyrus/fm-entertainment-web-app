@@ -59,6 +59,9 @@ Users should be able to:
 - [next-router-mock](https://github.com/scottrippey/next-router-mock)
 - [next-router-mock: Support Next 13 'next/navigation' router](https://github.com/scottrippey/next-router-mock/issues/67#issuecomment-1564906960)
 - [How to Write Unit Tests with React Testing Library in Next.js](https://blog.bitsrc.io/how-to-write-unit-tests-with-react-testing-library-in-the-next-js-5d22798afd9a)
+- [Swiper nested inside display:grid css](https://stackoverflow.com/questions/61373563/swiper-nested-inside-displaygrid-css)
+- [Prevent content from expanding grid items](https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items)
+- [Why does minmax(0, 1fr) work for long elements while 1fr doesn't?](https://stackoverflow.com/questions/52861086/why-does-minmax0-1fr-work-for-long-elements-while-1fr-doesnt)
 
 ## Author
 
