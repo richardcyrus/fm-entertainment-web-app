@@ -13,7 +13,7 @@ import 'swiper/css/bundle'
 
 export function TrendingRow(props: TrendingRowProps) {
   return (
-    <div className={styles['trending-row']}>
+    <div className={`trending-row ${styles['trending-row']}`}>
       <h2 className={styles['row-title']}>Trending</h2>
       <div className={styles['card-container']}>
         <Swiper
