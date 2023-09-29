@@ -1,6 +1,6 @@
 // jest.setup.js
 
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/jest-globals'
 import 'jest-axe/extend-expect'
 import mockRouter from 'next-router-mock'
 
