@@ -17,16 +17,16 @@ export function VideoCard({
   return (
     <>
       <div className={styles.card}>
-        <div className={styles.bookmark}>
-          <div className={styles.bookmarkIconContainer}>
-            {isBookmarked ? (
-              <BookmarkFullIcon className={styles.bookmarkIcon} />
-            ) : (
-              <BookmarkEmptyIcon className={styles.bookmarkIcon} />
-            )}
+        <div className={styles['card-image']}>
+          <div className={styles.bookmark}>
+            <div className={styles['bookmark-icon-container']}>
+              {isBookmarked ? (
+                <BookmarkFullIcon className={styles['bookmark-icon']} />
+              ) : (
+                <BookmarkEmptyIcon className={styles['bookmark-icon']} />
+              )}
+            </div>
           </div>
-        </div>
-        <div className={styles.cardImage}>
           <picture>
             <source
               media="(max-width: 767px)"
@@ -43,24 +43,24 @@ export function VideoCard({
             <img src={thumbnail.regular?.large} alt={`Backdrop for ${title}`} />
           </picture>
         </div>
-        <div className={`card-body ${styles.cardBody}`}>
-          <div className={styles.videoInfo}>
-            <div className={styles.videoMeta}>
+        <div className={`card-body ${styles['card-body']}`}>
+          <div className={styles['video-info']}>
+            <div className={styles['video-meta']}>
               <span>{year}</span>
               <span className={styles.bullet}>&bull;</span>
-              <span className={styles.categoryIconContainer}>
+              <span className={styles['category-icon-container']}>
                 {category === 'Movie' ? (
-                  <MovieCategoryIcon className={styles.categoryIcon} />
+                  <MovieCategoryIcon className={styles['category-icon']} />
                 ) : null}
                 {category === 'TV Series' ? (
-                  <TVCategoryIcon className={styles.categoryIcon} />
+                  <TVCategoryIcon className={styles['category-icon']} />
                 ) : null}
               </span>
-              <span className={styles.categoryName}>{category}</span>
+              <span className={styles['category-name']}>{category}</span>
               <span className={styles.bullet}>&bull;</span>
               <span>{rating}</span>
             </div>
-            <h3 className={styles.videoTitle}>{title}</h3>
+            <h3 className={styles['video-title']}>{title}</h3>
           </div>
         </div>
       </div>

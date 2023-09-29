@@ -11,16 +11,16 @@ export type VideoCardProps = {
   thumbnail: {
     trending:
       | ({
-          small: string | null
-          medium: string | null
-          large: string | null
+          small: string | undefined
+          medium: string | undefined
+          large: string | undefined
         } & {})
       | null
     regular:
       | ({
-          small: string | null
-          medium: string | null
-          large: string | null
+          small: string | undefined
+          medium: string | undefined
+          large: string | undefined
         } & {})
       | null
   }
