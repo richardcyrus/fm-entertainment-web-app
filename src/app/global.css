@@ -28,6 +28,8 @@ body {
 }
 
 .page-container {
+  margin-block-end: 3.25rem;
+
   @media screen and (width >= 75em) {
     display: grid;
     grid-template-areas: 'nav main';
@@ -50,38 +52,6 @@ main {
   }
 }
 
-.heading-lg {
-  color: var(--color-white);
-  font-size: var(--font-size-heading-lg);
-  font-weight: var(--font-weight-light);
-}
-
-.heading-md {
-  color: var(--color-white);
-  font-size: var(--font-size-heading-md);
-  font-weight: var(--font-weight-light);
-}
-
-.heading-sm {
-  color: var(--color-white);
-  font-size: var(--font-size-heading-sm);
-  font-weight: var(--font-weight-medium);
-}
-
-.heading-xs {
-  color: var(--color-white);
-  font-size: var(--font-size-heading-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.body-md {
-  font-size: var(--font-size-body-md);
-}
-
-.body-sm {
-  font-size: var(--font-size-body-sm);
-}
-
 .search-container {
   margin-block-start: 1.625em;
   margin-inline: 1em;
@@ -94,6 +64,46 @@ main {
   @media screen and (width >= 75em) {
     margin-block-start: 4em;
     margin-inline-start: 0;
+  }
+
+  & + .trending-row {
+    padding-block-start: 1.625rem;
+
+    @media screen and (width >= 48em) {
+      padding-block-start: 2.1875rem;
+    }
+  }
+
+  & + .videos-section {
+    padding-block-start: 1.625rem;
+
+    @media screen and (width >= 48em) {
+      padding-block-start: 2.125rem;
+    }
+
+    @media screen and (width >= 75em) {
+      padding-block-start: 2.1875rem;
+    }
+  }
+}
+
+.trending-row + .videos-section {
+  padding-block-start: 1.5rem;
+
+  @media screen and (width >= 48em) {
+    padding-block-start: 2.5rem;
+  }
+}
+
+.videos-section + .videos-section {
+  padding-block-start: 1.5rem;
+
+  @media screen and (width >= 48em) {
+    padding-block-start: 3rem;
+  }
+
+  @media screen and (width >= 75em) {
+    padding-block-start: 2.5rem;
   }
 }
 

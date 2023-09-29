@@ -1,22 +1,7 @@
-.card {
-  position: relative;
-}
-
-.cardImage {
+.card-image {
   border-radius: 8px;
-  height: 110px;
   overflow: hidden;
-  width: 164px;
-
-  @media screen and (width >= 48em) {
-    height: 140px;
-    width: 220px;
-  }
-
-  @media screen and (width >= 75em) {
-    height: 174px;
-    width: 280px;
-  }
+  position: relative;
 }
 
 .bookmark {
@@ -26,36 +11,32 @@
   display: flex;
   height: 32px;
   justify-content: center;
-  left: 7.75rem;
   opacity: 0.5;
   position: absolute;
+  right: 0.5rem;
   top: 0.5rem;
   width: 32px;
 
   @media screen and (width >= 48em) {
-    left: 10.75rem;
+    right: 1rem;
     top: 1rem;
-  }
-
-  @media screen and (width >= 75em) {
-    left: 14.5rem;
   }
 }
 
-.bookmarkIcon {
+.bookmark-icon {
   height: 0.875em;
   width: 0.72938em;
 }
 
-.cardBody {
+.card-body {
   position: relative;
 }
 
-.videoInfo {
+.video-info {
   margin-block-start: 0.5rem;
 }
 
-.videoMeta {
+.video-meta {
   align-items: center;
   display: flex;
   font-size: 0.6875rem;
@@ -76,11 +57,11 @@
   }
 }
 
-.categoryIconContainer {
+.category-icon-container {
   display: inline-block;
 }
 
-.categoryIcon {
+.category-icon {
   height: 10px;
   width: 10px;
 
@@ -90,7 +71,7 @@
   }
 }
 
-.categoryName {
+.category-name {
   padding-inline-start: 0.25rem;
 
   @media screen and (width >= 48em) {
@@ -98,7 +79,7 @@
   }
 }
 
-.videoTitle {
+.video-title {
   color: var(--color-white);
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
