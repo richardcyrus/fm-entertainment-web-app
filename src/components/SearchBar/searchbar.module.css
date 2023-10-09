@@ -33,13 +33,11 @@
     line-height: 1;
   }
 
-  &:focus {
+  &:focus,
+  &:hover {
     border-bottom: 1px solid;
     border-color: var(--color-greyish-blue);
-    outline: 1px solid transparent;
-  }
-
-  &:hover {
     cursor: pointer;
+    outline: 1px solid transparent;
   }
 }
