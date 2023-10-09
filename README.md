@@ -62,6 +62,7 @@ Users should be able to:
 - [Swiper nested inside display:grid css](https://stackoverflow.com/questions/61373563/swiper-nested-inside-displaygrid-css)
 - [Prevent content from expanding grid items](https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items)
 - [Why does minmax(0, 1fr) work for long elements while 1fr doesn't?](https://stackoverflow.com/questions/52861086/why-does-minmax0-1fr-work-for-long-elements-while-1fr-doesnt)
+- [Hidden content for better a11y](https://gomakethings.com/hidden-content-for-better-a11y/#hiding-the-link)
 
 ## Author
 
