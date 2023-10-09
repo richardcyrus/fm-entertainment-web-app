@@ -2,6 +2,7 @@ import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg'
 import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg'
 import MovieCategoryIcon from '@/assets/icon-category-movie.svg'
 import TVCategoryIcon from '@/assets/icon-category-tv.svg'
+import PlayIcon from '@/assets/icon-play.svg'
 import { VideoCardProps } from '@/types'
 
 import styles from './TrendingCard.module.css'
@@ -43,6 +44,14 @@ export function TrendingCard({
               alt={`Backdrop for ${title}`}
             />
           </picture>
+          <div className={styles['play-overlay']}>
+            <div className={styles['play-button']}>
+              <div className={styles['icon-container']}>
+                <PlayIcon className={styles['play-icon']} />
+              </div>
+              <div className={styles['play-text']}>Play</div>
+            </div>
+          </div>
         </div>
         <div className={styles['card-body']}>
           <div className={styles['video-info']}>

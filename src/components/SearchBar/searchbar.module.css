@@ -38,4 +38,8 @@
     border-color: var(--color-greyish-blue);
     outline: 1px solid transparent;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
