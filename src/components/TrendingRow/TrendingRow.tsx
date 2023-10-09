@@ -1,6 +1,6 @@
 'use client'
 
-import { FreeMode } from 'swiper/modules'
+import { FreeMode, Navigation, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { TrendingCard } from '@/components/TrendingCard'
@@ -17,8 +17,10 @@ export function TrendingRow(props: TrendingRowProps) {
       <h2 className={styles['row-title']}>Trending</h2>
       <div className={styles['card-container']}>
         <Swiper
-          modules={[FreeMode]}
+          modules={[FreeMode, Navigation, Mousewheel]}
           freeMode
+          navigation={true}
+          mousewheel={true}
           slidesPerView="auto"
           spaceBetween={16}
           breakpoints={{

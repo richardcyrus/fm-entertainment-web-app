@@ -22,6 +22,8 @@
 }
 
 .card-container {
+  --swiper-navigation-color: var(--color-white);
+
   margin-block-start: 1rem;
 
   @media screen and (width >= 48em) {
