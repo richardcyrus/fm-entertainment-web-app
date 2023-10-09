@@ -63,3 +63,24 @@ export async function getBookmarkedTVSeries() {
     where: whereCriteria,
   })
 }
+
+export async function setBookmarkedState(showTitle: string, action: string) {
+  const show = await prisma.video.findFirstOrThrow({
+    where: {
+      title: showTitle,
+    },
+  })
+
+  const where: Prisma.VideoWhereUniqueInput = {
+    id: show.id,
+  }
+
+  const data: Prisma.VideoUpdateInput = {
+    isBookmarked: action === 'set-bookmark',
+  }
+
+  return prisma.video.update({
+    where,
+    data,
+  })
+}
