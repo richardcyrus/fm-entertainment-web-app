@@ -18,15 +18,17 @@ export function VideoCard({
     <>
       <div className={styles.card}>
         <div className={styles['card-image']}>
-          <div className={styles.bookmark}>
-            <div className={styles['bookmark-icon-container']}>
-              {isBookmarked ? (
-                <BookmarkFullIcon className={styles['bookmark-icon']} />
-              ) : (
-                <BookmarkEmptyIcon className={styles['bookmark-icon']} />
-              )}
-            </div>
-          </div>
+          <button className={`bookmark-button ${styles.bookmark}`}>
+            {isBookmarked ? (
+              <BookmarkFullIcon
+                className={`${styles['bookmark-icon']} ${styles['bookmark-full-icon']}`}
+              />
+            ) : (
+              <BookmarkEmptyIcon
+                className={`${styles['bookmark-icon']} ${styles['bookmark-empty-icon']}`}
+              />
+            )}
+          </button>
           <picture>
             <source
               media="(max-width: 767px)"

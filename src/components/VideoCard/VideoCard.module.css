@@ -4,6 +4,20 @@
   position: relative;
 }
 
+.bookmark-icon {
+  height: 14px;
+  width: 12px;
+}
+
+.bookmark-full-icon {
+  fill: var(--color-white);
+}
+
+.bookmark-empty-icon {
+  stroke: var(--color-white);
+  stroke-width: 1.5;
+}
+
 .bookmark {
   align-items: center;
   background-color: var(--color-dark-blue);
@@ -21,11 +35,19 @@
     right: 1rem;
     top: 1rem;
   }
-}
 
-.bookmark-icon {
-  height: 0.875em;
-  width: 0.72938em;
+  &:hover {
+    background-color: var(--color-white);
+    opacity: 1;
+
+    > .bookmark-empty-icon {
+      stroke: var(--color-dark-blue);
+    }
+
+    > .bookmark-full-icon {
+      fill: var(--color-dark-blue);
+    }
+  }
 }
 
 .card-body {
