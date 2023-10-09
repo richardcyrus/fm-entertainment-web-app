@@ -18,7 +18,7 @@
   }
 }
 
-.navWrapper {
+.nav-wrapper {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -51,7 +51,7 @@
   }
 }
 
-.navItems {
+.nav-items {
   display: flex;
   gap: 1.5rem;
   list-style: none;
@@ -70,7 +70,15 @@
   }
 }
 
-.navIcon {
+.active svg path {
+  fill: var(--color-white);
+}
+
+.nav-item > a:hover svg path {
+  fill: var(--color-red);
+}
+
+.nav-icon {
   height: 16px;
   width: 16px;
 
@@ -98,8 +106,4 @@
     height: 40px;
     width: 40px;
   }
-}
-
-.active svg path {
-  fill: var(--color-white);
 }
