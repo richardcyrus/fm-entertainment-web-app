@@ -50,6 +50,30 @@ main {
     min-width: 0;
     overflow: hidden;
   }
+
+  .not-found {
+    display: grid;
+    margin-block-start: 15vh;
+    margin-inline-start: 1rem;
+
+    @media screen and (width >= 48em) {
+      margin-inline-start: 2rem;
+    }
+
+    @media screen and (width >= 75em) {
+      margin-inline-start: 0;
+    }
+
+    h2 {
+      font-size: var(--font-size-heading-lg);
+      font-weight: var(--font-weight-medium);
+    }
+
+    p {
+      font-size: var(--font-size-body-md);
+      font-weight: var(--font-weight-light);
+    }
+  }
 }
 
 .search-container {
