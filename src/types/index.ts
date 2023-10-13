@@ -1,4 +1,13 @@
-export type ShowCategory = 'All' | 'Movies' | 'TV Series' | 'Bookmarked'
+import { z } from 'zod'
+
+export const ShowCategorySchema = z.union([
+  z.literal('All'),
+  z.literal('Movie'),
+  z.literal('TV Series'),
+  z.literal('Bookmarked'),
+])
+
+export type ShowCategory = z.infer<typeof ShowCategorySchema>
 
 export type SearchBarProps = {
   label: string
