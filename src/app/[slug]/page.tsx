@@ -19,24 +19,18 @@ export default async function Page({
   let searchResult: VideoCardProps[] = []
   let shows: VideoCardProps[]
 
-  switch (params.slug) {
-    case 'movies': {
-      searchLabel = 'Search for movies'
-      searchCategoryName = 'Movie'
-      gridTitle = 'Movies'
-      shows = (await getMovies()) as unknown as VideoCardProps[]
-      break
-    }
-    case 'tv-series': {
-      searchLabel = 'Search for TV series'
-      searchCategoryName = 'TV Series'
-      gridTitle = 'TV Series'
-      shows = (await getTVSeries()) as unknown as VideoCardProps[]
-      break
-    }
-    default: {
-      notFound()
-    }
+  if (params.slug === 'movies') {
+    searchLabel = 'Search for movies'
+    searchCategoryName = 'Movie'
+    gridTitle = 'Movies'
+    shows = (await getMovies()) as unknown as VideoCardProps[]
+  } else if (params.slug === 'tv-series') {
+    searchLabel = 'Search for TV series'
+    searchCategoryName = 'TV Series'
+    gridTitle = 'TV Series'
+    shows = (await getTVSeries()) as unknown as VideoCardProps[]
+  } else {
+    notFound()
   }
 
   if (Object.keys(searchParams).length !== 0) {
