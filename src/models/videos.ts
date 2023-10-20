@@ -84,3 +84,18 @@ export async function setBookmarkedState(showTitle: string, action: string) {
     data,
   })
 }
+
+export async function searchShows(category: string, showTitle: string) {
+  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
+    title: { contains: showTitle, mode: 'insensitive' },
+    category: {
+      contains:
+        category === 'All' || category === 'Bookmarked' ? undefined : category,
+    },
+    isBookmarked: category === 'Bookmarked' || undefined,
+  })
+
+  return prisma.video.findMany({
+    where: whereCriteria,
+  })
+}

@@ -1,9 +1,9 @@
-.searchForm {
+.search-form {
   align-items: center;
   display: flex;
 }
 
-.searchIcon {
+.search-icon {
   height: 18px;
   margin-inline-end: 1.18em;
   width: 18px;
@@ -19,7 +19,7 @@
   }
 }
 
-.searchInput {
+.search-input {
   background-color: var(--color-dark-blue);
   border: none;
   color: var(--color-white);
