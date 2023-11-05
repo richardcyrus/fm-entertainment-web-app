@@ -1,6 +1,6 @@
 'use client'
 
-import { experimental_useFormState as useFormState } from 'react-dom'
+import { useFormState } from 'react-dom'
 
 import { toggleBookmark } from '@/app/actions'
 import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg'
