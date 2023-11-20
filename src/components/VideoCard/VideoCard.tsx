@@ -13,7 +13,7 @@ import type { VideoCardProps } from '@/types'
 import styles from './VideoCard.module.css'
 
 const initialState = {
-  message: null,
+  message: '',
 }
 
 export function VideoCard({
