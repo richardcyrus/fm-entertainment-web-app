@@ -5,15 +5,19 @@ This is a solution to the [Entertainment web app challenge on Frontend Mentor](h
 ## Table of contents <!-- omit from toc -->
 
 - [Overview](#overview)
-- [The challenge](#the-challenge)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
 ## Overview
 
-## The challenge
+### The challenge
 
 Users should be able to:
 
@@ -24,6 +28,15 @@ Users should be able to:
 - Search for relevant shows on all pages
 - **Bonus**: Build this project as a full-stack application
 - **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
+
+### Screenshot
+
+![](./screenshot.png)
+
+### Links
+
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
 ## My process
 
@@ -36,6 +49,18 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
+
+### What I learned
+
+I chose to try the new app router in Next.js 13.
+
+- I liked the inheritance of the layout.
+- Understanding how to work with server actions and RSC took a bit more work.
+
+### Continued development
+
+- Add more testing.
+- Look at possibly using Playwright in future projects, or when updating existing projects.
 
 ### Useful resources
 
