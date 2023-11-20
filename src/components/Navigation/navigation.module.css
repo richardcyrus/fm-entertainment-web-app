@@ -5,8 +5,7 @@
   @media screen and (width >= 48em) {
     border-radius: 10px;
     margin-block-start: 1.5rem;
-    margin-inline-end: 1.5rem;
-    margin-inline-start: 1.5rem;
+    margin-inline: 1.5rem 1.5rem;
   }
 
   @media screen and (width >= 75em) {
@@ -27,15 +26,13 @@
 
   @media screen and (width >= 48em) {
     padding-block: 1.5rem;
-    padding-inline-end: 1rem;
-    padding-inline-start: 1.5rem;
+    padding-inline: 1.5rem 1rem;
   }
 
   @media screen and (width >= 75em) {
     display: block;
     min-height: 100%;
-    padding-block-end: 2rem;
-    padding-block-start: 2rem;
+    padding-block: 2rem 2rem;
     padding-inline: 2rem;
     position: relative;
   }

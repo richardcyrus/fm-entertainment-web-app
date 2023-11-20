@@ -13,7 +13,7 @@ import { VideoCardProps } from '@/types'
 import styles from './TrendingCard.module.css'
 
 const initialState = {
-  message: null,
+  message: '',
 }
 
 export function TrendingCard({

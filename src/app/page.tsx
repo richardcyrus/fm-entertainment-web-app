@@ -29,7 +29,7 @@ export default async function Home({
       {Object.keys(searchParams).length === 0 ? (
         <>
           <TrendingRow shows={trendingShows} />
-          <VideoGrid title="Recommeded for you" shows={recommendedShows} />
+          <VideoGrid title="Recommended for you" shows={recommendedShows} />
         </>
       ) : (
         <VideoGrid
