@@ -21,8 +21,7 @@
     "lint:css": "stylelint './**/*.css' --fix --cache --cache-location ./node_modules/.cache/stylelint",
     "format": "prettier --write './**/*.{css,js,jsx,ts,tsx,json.md}'",
     "prepare": "husky install",
-    "test": "jest",
-    "test:e2e": "playwright test"
+    "test": "jest"
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",
@@ -38,7 +37,6 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@playwright/test": "^1.40.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
