@@ -20,6 +20,7 @@
     "lint:code": "next lint",
     "lint:css": "stylelint './**/*.css' --fix --cache --cache-location ./node_modules/.cache/stylelint",
     "format": "prettier --write './**/*.{css,js,jsx,ts,tsx,json.md}'",
+    "postinstall": "prisma generate",
     "prepare": "husky install",
     "test": "jest"
   },
