@@ -1,6 +1,7 @@
 'use client'
 
-import { ChangeEvent, useState, useRef } from 'react'
+import { useNavigate } from '@tanstack/react-router'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import SearchIcon from '@/assets/icon-search.svg'
 import useDebounce from '@/hooks/useDebounce'
@@ -10,8 +11,7 @@ import styles from './searchbar.module.css'
 
 export function SearchBar({ label, category }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState<string>('')
-
-  const formRef = useRef<HTMLFormElement>(null)
+  const navigate = useNavigate()
 
   const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -19,19 +19,28 @@ export function SearchBar({ label, category }: SearchBarProps) {
 
   const debouncedSearchTerm = useDebounce(searchTerm)
 
-  if (debouncedSearchTerm) {
-    formRef.current?.submit()
-  }
+  useEffect(() => {
+    if (!debouncedSearchTerm) {
+      return
+    }
+
+    navigate({
+      to: '.',
+      search: (prev) => ({
+        ...prev,
+        category,
+        title: debouncedSearchTerm,
+      }),
+    })
+  }, [debouncedSearchTerm, category, navigate])
 
   return (
     <div className="search-container">
       <form
         role="search"
         className={styles['search-form']}
-        ref={formRef}
-        method="GET"
+        onSubmit={(event) => event.preventDefault()}
       >
-        <input type="hidden" name="category" value={category} />
         <label htmlFor="search" aria-label={label}>
           <SearchIcon className={styles['search-icon']} />
         </label>

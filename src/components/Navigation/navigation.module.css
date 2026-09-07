@@ -89,7 +89,6 @@
   border: 1px solid var(--color-white);
   border-radius: 50%;
   height: 24px;
-  object-fit: contain;
   position: relative;
   width: 24px;
 
@@ -103,4 +102,10 @@
     height: 40px;
     width: 40px;
   }
+}
+
+.avatar img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
 }

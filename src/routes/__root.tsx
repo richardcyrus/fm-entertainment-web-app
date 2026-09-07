@@ -6,6 +6,8 @@ import {
   Scripts,
 } from '@tanstack/react-router'
 
+import { Navigation } from '@/components/Navigation'
+
 import appCss from '../app/global.css?url'
 
 export const Route = createRootRoute({
@@ -45,6 +47,9 @@ function RootComponent() {
       </head>
       <body>
         <div className="page-container">
+          <header>
+            <Navigation />
+          </header>
           <main>
             <Outlet />
           </main>
