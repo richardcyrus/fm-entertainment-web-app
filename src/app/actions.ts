@@ -25,7 +25,7 @@ export const toggleBookmark = createServerFn({ method: 'POST' })
       }
 
       return { message: notice }
-    } catch (e) {
+    } catch {
       return {
         message: `Failed to change the bookmark status for the show ${data.videoTitle}`,
       }

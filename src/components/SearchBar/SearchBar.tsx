@@ -1,7 +1,8 @@
 'use client'
 
-import { useNavigate } from '@tanstack/react-router'
 import { ChangeEvent, useEffect, useState } from 'react'
+
+import { useNavigate } from '@tanstack/react-router'
 
 import SearchIcon from '@/assets/icon-search.svg'
 import useDebounce from '@/hooks/useDebounce'

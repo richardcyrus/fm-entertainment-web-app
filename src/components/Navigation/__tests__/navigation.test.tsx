@@ -1,8 +1,9 @@
-import { describe, expect, it } from '@jest/globals'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
+import { describe, expect, it } from 'vitest'
 
 import { Navigation } from '@/components/Navigation'
+import { renderWithRouter } from '@/test/render-with-router'
 
 describe('Navigation', () => {
   const links = [
@@ -33,19 +34,19 @@ describe('Navigation', () => {
   ]
 
   it('renders a navigation landmark', async () => {
-    const { container } = render(<Navigation />)
+    const { container } = renderWithRouter(<Navigation />)
 
-    const nav = screen.getByRole('navigation')
+    const nav = await screen.findByRole('navigation')
 
     expect(nav).toBeInTheDocument()
     expect(await axe(container)).toHaveNoViolations()
   })
 
   links.forEach((link) => {
-    it(`contains a ${link.title} link`, () => {
-      render(<Navigation />)
+    it(`contains a ${link.title} link`, async () => {
+      renderWithRouter(<Navigation />)
 
-      const linkEl = screen.getByRole('link', link.options)
+      const linkEl = await screen.findByRole('link', link.options)
 
       expect(linkEl).toBeInTheDocument()
       expect(linkEl).toHaveAttribute(link.attr, link.value)

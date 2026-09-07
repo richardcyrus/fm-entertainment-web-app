@@ -1,8 +1,9 @@
-import { describe, expect, it } from '@jest/globals'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 import { SearchBar } from '@/components/SearchBar'
+import { renderWithRouter } from '@/test/render-with-router'
 import type { ShowCategory } from '@/types'
 
 describe('Search Bar', () => {
@@ -15,11 +16,11 @@ describe('Search Bar', () => {
   })
 
   it('renders a search landmark', async () => {
-    const { container } = render(
+    const { container } = renderWithRouter(
       <SearchBar label={expectedLabel} category={expectedCategory} />
     )
 
-    const searchBar = screen.getByRole('search')
+    const searchBar = await screen.findByRole('search')
 
     expect(searchBar).toBeInTheDocument()
     expect(await axe(container)).toHaveNoViolations()

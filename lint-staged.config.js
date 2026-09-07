@@ -1,13 +1,13 @@
-const micromatch = require('micromatch')
+import micromatch from 'micromatch'
 
-module.exports = {
+export default {
   '*': (allFiles) => {
     const commands = []
 
     const codeFiles = micromatch(allFiles, ['**/*.[jt]s?(x)'])
     if (codeFiles.length > 0) {
       commands.push(`prettier --write --list-different ${codeFiles.join(' ')}`)
-      commands.push(`next lint --fix --file ${codeFiles.join(' --file ')}`)
+      commands.push(`eslint --fix ${codeFiles.join(' ')}`)
     }
 
     const cssFiles = micromatch(allFiles, ['**/*.css'])
