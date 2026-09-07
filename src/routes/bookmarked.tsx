@@ -3,33 +3,34 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 
 import { SearchBar } from '@/components/SearchBar'
-import { TrendingRow } from '@/components/TrendingRow'
 import { VideoGrid } from '@/components/VideoGrid'
 import { searchShowsServerFn } from '@/lib/show-search-server-fn'
-import { getRecommendedShows, getTrendingShows } from '@/models/videos'
+import { getBookmarkedMovies, getBookmarkedTVSeries } from '@/models/videos'
 import type { VideoCardProps } from '@/types'
 
-const homeSearchSchema = z.object({
+const bookmarkedSearchSchema = z.object({
   category: z.string().optional(),
   title: z.string().optional(),
 })
 
-const getHomeShows = createServerFn({ method: 'GET' }).handler(async () => {
-  const [trendingShows, recommendedShows] = await Promise.all([
-    getTrendingShows(),
-    getRecommendedShows(),
-  ])
+const getBookmarkedShows = createServerFn({ method: 'GET' }).handler(
+  async () => {
+    const [movies, tvSeries] = await Promise.all([
+      getBookmarkedMovies(),
+      getBookmarkedTVSeries(),
+    ])
 
-  return { trendingShows, recommendedShows }
-})
+    return { movies, tvSeries }
+  }
+)
 
-export const Route = createFileRoute('/')({
-  validateSearch: homeSearchSchema,
+export const Route = createFileRoute('/bookmarked')({
+  validateSearch: bookmarkedSearchSchema,
   loaderDeps: ({ search }) => search,
   loader: async ({ deps }) => {
     if (deps.title) {
       const searchResult = (await searchShowsServerFn({
-        data: { category: deps.category ?? 'All', title: deps.title },
+        data: { category: deps.category ?? 'Bookmarked', title: deps.title },
       })) as unknown as VideoCardProps[]
 
       return {
@@ -39,23 +40,23 @@ export const Route = createFileRoute('/')({
       }
     }
 
-    const { trendingShows, recommendedShows } = await getHomeShows()
+    const { movies, tvSeries } = await getBookmarkedShows()
 
     return {
       kind: 'browse' as const,
-      trendingShows: trendingShows as unknown as VideoCardProps[],
-      recommendedShows: recommendedShows as unknown as VideoCardProps[],
+      movies: movies as unknown as VideoCardProps[],
+      tvSeries: tvSeries as unknown as VideoCardProps[],
     }
   },
-  component: Home,
+  component: BookmarkedPage,
 })
 
-function Home() {
+function BookmarkedPage() {
   const data = Route.useLoaderData()
 
   return (
     <>
-      <SearchBar label="Search for movies or TV series" category="All" />
+      <SearchBar label="Search for bookmarked shows" category="Bookmarked" />
       {data.kind === 'search' ? (
         <VideoGrid
           title={`Found ${data.searchResult.length} result${
@@ -65,11 +66,8 @@ function Home() {
         />
       ) : (
         <>
-          <TrendingRow shows={data.trendingShows} />
-          <VideoGrid
-            title="Recommended for you"
-            shows={data.recommendedShows}
-          />
+          <VideoGrid title="Bookmarked Movies" shows={data.movies} />
+          <VideoGrid title="Bookmarked TV Series" shows={data.tvSeries} />
         </>
       )}
     </>

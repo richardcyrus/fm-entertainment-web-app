@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 
 import { toggleBookmark } from '@/app/actions'
 import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg'
@@ -24,7 +24,11 @@ export function TrendingCard({
   isBookmarked,
   thumbnail,
 }: VideoCardProps) {
-  const [state, formAction] = useFormState(toggleBookmark, initialState)
+  const [state, formAction] = useActionState(
+    (_prevState: typeof initialState, formData: FormData) =>
+      toggleBookmark({ data: formData }),
+    initialState
+  )
 
   return (
     <>

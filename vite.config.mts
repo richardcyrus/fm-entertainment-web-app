@@ -16,6 +16,7 @@ export default defineConfig({
     viteReact(),
     nitro(),
     svgr({
+      include: '**/*.svg',
       svgrOptions: {
         dimensions: false,
       },

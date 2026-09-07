@@ -1,3 +1,4 @@
+import '@fontsource-variable/outfit'
 import {
   createRootRoute,
   HeadContent,
@@ -5,7 +6,6 @@ import {
   Scripts,
 } from '@tanstack/react-router'
 
-import '@fontsource-variable/outfit'
 import appCss from '../app/global.css?url'
 
 export const Route = createRootRoute({
@@ -22,8 +22,20 @@ export const Route = createRootRoute({
       },
     ],
   }),
+  notFoundComponent: NotFound,
   component: RootComponent,
 })
+
+function NotFound() {
+  return (
+    <div className="not-found">
+      <div>
+        <h2>Not Found</h2>
+        <p>Could not find the requested section</p>
+      </div>
+    </div>
+  )
+}
 
 function RootComponent() {
   return (
