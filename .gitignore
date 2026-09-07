@@ -207,6 +207,9 @@ dist
 dist-ssr
 *.local
 
+# TanStack Router (auto-generated)
+src/routeTree.gen.ts
+
 # Cypress
 cypress/videos/
 cypress/screenshots/

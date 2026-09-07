@@ -16,6 +16,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "dev:start": "vite dev",
+    "build:start": "vite build",
     "lint": "concurrently --raw npm:lint:*",
     "lint:code": "next lint",
     "lint:css": "stylelint './**/*.css' --fix --cache --cache-location ./node_modules/.cache/stylelint",
@@ -25,8 +27,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fontsource-variable/outfit": "^5.3.0",
     "@prisma/client": "^5.16.2",
-    "@types/node": "20.14.15",
+    "@tanstack/react-router": "^1.170.33",
+    "@tanstack/react-start": "^1.168.50",
+    "@types/node": "^24.13.3",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.35",
     "next": "^14.2.35",
@@ -39,6 +44,7 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@svgr/webpack": "^8.1.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -46,6 +52,7 @@
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "@types/testing-library__jest-dom": "^5.14.9",
+    "@vitejs/plugin-react": "^6.1.1",
     "concurrently": "^8.2.2",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-jest-dom": "^5.4.0",
@@ -57,6 +64,7 @@
     "lint-staged": "^15.2.11",
     "micromatch": "^4.0.8",
     "next-router-mock": "^0.9.13",
+    "nitro": "^3.0.260903-beta",
     "postcss": "^8.4.49",
     "postcss-import": "^16.1.1",
     "postcss-nested": "^6.0.1",
@@ -67,7 +75,9 @@
     "react-intersection-observer": "^9.10.3",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "vite": "^8.2.2",
+    "vite-plugin-svgr": "^5.2.0"
   },
   "browserslist": {
     "production": [

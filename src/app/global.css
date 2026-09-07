@@ -2,6 +2,7 @@
 
 :root {
   --color-dark-blue: hsl(233deg 30% 9%);
+  --font-outfit: 'Outfit Variable', sans-serif;
   --color-greyish-blue: hsl(223deg 23% 46%);
   --color-red: hsl(0deg 97% 63%);
   --color-semi-dark-blue: hsl(223deg 36% 14%);
