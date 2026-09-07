@@ -1,10 +1,9 @@
-'use client'
-
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import type { ChangeEvent } from 'react'
 
 import { useNavigate } from '@tanstack/react-router'
 
-import SearchIcon from '@/assets/icon-search.svg'
+import SearchIcon from '@/assets/icon-search.svg?react'
 import useDebounce from '@/hooks/useDebounce'
 import type { SearchBarProps } from '@/types'
 

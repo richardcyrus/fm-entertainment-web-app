@@ -9,7 +9,6 @@ export default defineConfig({
   plugins: [
     viteReact(),
     svgr({
-      include: '**/*.svg',
       svgrOptions: {
         dimensions: false,
       },

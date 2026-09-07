@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router'
 
-import NavBookmarkIcon from '@/assets/icon-nav-bookmark.svg'
-import NavHomeIcon from '@/assets/icon-nav-home.svg'
-import NavMoviesIcon from '@/assets/icon-nav-movies.svg'
-import NavTVSeriesIcon from '@/assets/icon-nav-tv-series.svg'
-import Logo from '@/assets/logo.svg'
+import NavBookmarkIcon from '@/assets/icon-nav-bookmark.svg?react'
+import NavHomeIcon from '@/assets/icon-nav-home.svg?react'
+import NavMoviesIcon from '@/assets/icon-nav-movies.svg?react'
+import NavTVSeriesIcon from '@/assets/icon-nav-tv-series.svg?react'
+import Logo from '@/assets/logo.svg?react'
 
 import styles from './navigation.module.css'
 

@@ -1,66 +1,45 @@
-import { Prisma } from '@prisma/client'
-
+import type { Prisma } from '@/generated/prisma/client'
 import { prisma } from '@/lib/prisma'
 
 export async function getTrendingShows() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    isTrending: true,
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: { isTrending: true },
   })
 }
 
 export async function getRecommendedShows() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    isTrending: false,
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: { isTrending: false },
   })
 }
 
 export async function getMovies() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    category: 'Movie',
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: { category: 'Movie' },
   })
 }
 
 export async function getTVSeries() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    category: 'TV Series',
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: { category: 'TV Series' },
   })
 }
 
 export async function getBookmarkedMovies() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    isBookmarked: true,
-    category: 'Movie',
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: {
+      isBookmarked: true,
+      category: 'Movie',
+    },
   })
 }
 
 export async function getBookmarkedTVSeries() {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    isBookmarked: true,
-    category: 'TV Series',
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: {
+      isBookmarked: true,
+      category: 'TV Series',
+    },
   })
 }
 
@@ -86,16 +65,16 @@ export async function setBookmarkedState(showTitle: string, action: string) {
 }
 
 export async function searchShows(category: string, showTitle: string) {
-  const whereCriteria = Prisma.validator<Prisma.VideoWhereInput>()({
-    title: { contains: showTitle, mode: 'insensitive' },
-    category: {
-      contains:
-        category === 'All' || category === 'Bookmarked' ? undefined : category,
-    },
-    isBookmarked: category === 'Bookmarked' || undefined,
-  })
-
   return prisma.video.findMany({
-    where: whereCriteria,
+    where: {
+      title: { contains: showTitle, mode: 'insensitive' },
+      category: {
+        contains:
+          category === 'All' || category === 'Bookmarked'
+            ? undefined
+            : category,
+      },
+      isBookmarked: category === 'Bookmarked' || undefined,
+    },
   })
 }

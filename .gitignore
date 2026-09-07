@@ -175,10 +175,6 @@ typings/
 .env.test.local
 .env.production.local
 
-# next.js build output
-/.next/
-/out/
-
 # Yarn 2
 .yarn/*
 !.yarn/patches
@@ -224,7 +220,6 @@ cypress/downloads/
 .stylelintcache
 
 *.tsbuildinfo
-next-env.d.ts
 *.pem
 /test-results/
 /tests-examples/
@@ -233,3 +228,5 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+/src/generated/prisma

@@ -1,14 +1,11 @@
 import '@fontsource-variable/outfit'
-import {
-  createRootRoute,
-  HeadContent,
-  Outlet,
-  Scripts,
-} from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import { Navigation } from '@/components/Navigation'
 
-import appCss from '../app/global.css?url'
+import appCss from '../styles/global.css?url'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -19,13 +16,17 @@ export const Route = createRootRoute({
     ],
     links: [
       {
+        rel: 'icon',
+        href: '/icon.png',
+      },
+      {
         rel: 'stylesheet',
         href: appCss,
       },
     ],
   }),
   notFoundComponent: NotFound,
-  component: RootComponent,
+  shellComponent: RootComponent,
 })
 
 function NotFound() {
@@ -39,9 +40,9 @@ function NotFound() {
   )
 }
 
-function RootComponent() {
+function RootComponent({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -50,10 +51,19 @@ function RootComponent() {
           <header>
             <Navigation />
           </header>
-          <main>
-            <Outlet />
-          </main>
+          <main>{children}</main>
         </div>
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
         <Scripts />
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 import { searchShows } from '@/models/videos'
 import { ShowCategorySchema } from '@/types'

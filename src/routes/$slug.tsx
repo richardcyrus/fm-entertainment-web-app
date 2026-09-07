@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { z } from 'zod'
+import * as z from 'zod'
 
 import { SearchBar } from '@/components/SearchBar'
 import { VideoGrid } from '@/components/VideoGrid'
@@ -41,6 +41,7 @@ export const Route = createFileRoute('/$slug')({
   loader: async ({ params, deps }) => {
     const config = slugConfig[params.slug]
 
+    /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */
     if (!config) {
       throw notFound()
     }

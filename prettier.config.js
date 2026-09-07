@@ -1,4 +1,7 @@
-export default {
+//  @ts-check
+
+/** @type {import('prettier').Config} */
+const config = {
   arrowParens: 'always',
   embeddedLanguageFormatting: 'auto',
   htmlWhitespaceSensitivity: 'css',
@@ -14,3 +17,5 @@ export default {
   trailingComma: 'es5',
   useTabs: false,
 }
+
+export default config

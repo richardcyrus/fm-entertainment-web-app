@@ -8,5 +8,6 @@ api/_build
 dist
 node_modules/
 package-lock.json
+pnpm-lock.yaml
 public/build
 yarn.lock

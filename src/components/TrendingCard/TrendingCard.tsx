@@ -1,14 +1,12 @@
-'use client'
-
 import { useActionState } from 'react'
 
-import { toggleBookmark } from '@/app/actions'
-import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg'
-import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg'
-import MovieCategoryIcon from '@/assets/icon-category-movie.svg'
-import TVCategoryIcon from '@/assets/icon-category-tv.svg'
-import PlayIcon from '@/assets/icon-play.svg'
-import { VideoCardProps } from '@/types'
+import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg?react'
+import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg?react'
+import MovieCategoryIcon from '@/assets/icon-category-movie.svg?react'
+import TVCategoryIcon from '@/assets/icon-category-tv.svg?react'
+import PlayIcon from '@/assets/icon-play.svg?react'
+import { toggleBookmark } from '@/lib/actions'
+import type { VideoCardProps } from '@/types'
 
 import styles from './TrendingCard.module.css'
 
@@ -61,7 +59,7 @@ export function TrendingCard({
               )}
             </button>
             <p className="screen-reader" aria-live="polite" role="status">
-              {state?.message}
+              {state.message}
             </p>
           </form>
           <picture>

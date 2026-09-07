@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+// import * as dotenv from "dotenv";
+import { PrismaClient } from '../generated/prisma/client'
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined
-}
+// dotenv.config({path: ['.env.local', '.env']})
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient()
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+const prisma = new PrismaClient()
+export { prisma }

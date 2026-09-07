@@ -48,7 +48,7 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
+- [TanStack Start](https://tanstack.com/start) - Full-stack React framework (migrated from Next.js)
 
 ### What I learned
 

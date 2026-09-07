@@ -1,10 +1,8 @@
-'use client'
-
 import { FreeMode, Navigation, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { TrendingCard } from '@/components/TrendingCard'
-import { TrendingRowProps } from '@/types'
+import type { TrendingRowProps } from '@/types'
 
 import styles from './TrendingRow.module.css'
 

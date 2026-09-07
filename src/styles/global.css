@@ -169,6 +169,7 @@ input[type='search']::-webkit-search-cancel-button {
  */
 .screen-reader {
   border: 0;
+  /* stylelint-disable-next-line property-no-deprecated */
   clip: rect(0 0 0 0);
   height: 1px;
   margin: -1px;
@@ -186,6 +187,7 @@ input[type='search']::-webkit-search-cancel-button {
  */
 .screen-reader-focusable:active,
 .screen-reader-focusable:focus {
+  /* stylelint-disable-next-line property-no-deprecated */
   clip: auto;
   height: auto;
   margin: 0;

@@ -1,5 +1,5 @@
 import { VideoCard } from '@/components/VideoCard'
-import { VideoCardProps } from '@/types'
+import type { VideoCardProps } from '@/types'
 
 import styles from './VideoGrid.module.css'
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { z } from 'zod'
+import * as z from 'zod'
 
 import { SearchBar } from '@/components/SearchBar'
 import { VideoGrid } from '@/components/VideoGrid'
