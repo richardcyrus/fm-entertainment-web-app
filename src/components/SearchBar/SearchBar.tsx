@@ -1,38 +1,42 @@
 import { useEffect, useState } from 'react'
 import type { ChangeEvent } from 'react'
 
-import { useNavigate } from '@tanstack/react-router'
+import { useNavigate, useSearch } from '@tanstack/react-router'
+import { useDebouncedCallback } from '@tanstack/react-pacer'
 
 import SearchIcon from '@/assets/icon-search.svg?react'
-import useDebounce from '@/hooks/useDebounce'
 import type { SearchBarProps } from '@/types'
 
 import styles from './searchbar.module.css'
 
 export function SearchBar({ label, category }: SearchBarProps) {
-  const [searchTerm, setSearchTerm] = useState<string>('')
   const navigate = useNavigate()
+  const search = useSearch({ strict: false })
+
+  const [searchTerm, setSearchTerm] = useState(() => search.title ?? '')
+
+  useEffect(() => {
+    setSearchTerm(search.title ?? '')
+  }, [search.title])
+
+  const debouncedSearch = useDebouncedCallback(
+    (title: string, searchCategory: string) => {
+      navigate({
+        to: '.',
+        search: (prev) => ({
+          ...prev,
+          category: searchCategory,
+          title: title || undefined,
+        }),
+      })
+    },
+    { wait: 500 }
+  )
 
   const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
+    debouncedSearch(event.target.value, category)
   }
-
-  const debouncedSearchTerm = useDebounce(searchTerm)
-
-  useEffect(() => {
-    if (!debouncedSearchTerm) {
-      return
-    }
-
-    navigate({
-      to: '.',
-      search: (prev) => ({
-        ...prev,
-        category,
-        title: debouncedSearchTerm,
-      }),
-    })
-  }, [debouncedSearchTerm, category, navigate])
 
   return (
     <div className="search-container">
@@ -50,6 +54,7 @@ export function SearchBar({ label, category }: SearchBarProps) {
           id="search"
           name="title"
           placeholder={label}
+          value={searchTerm}
           onChange={onInputChanged}
         />
       </form>

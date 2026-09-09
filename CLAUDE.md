@@ -38,7 +38,6 @@ TanStack Start (Vite + Nitro) + React 19 + TypeScript, with Prisma/MongoDB as th
 - `src/lib/show-search.ts` — plain function; Zod-validates search input before delegating to `models/videos.ts`.
 - `src/lib/show-search-server-fn.ts` — `createServerFn` wrapper around `show-search.ts`, used by route loaders so Prisma never reaches the client bundle.
 - `src/types/index.ts` — shared Zod schemas and TS types (`ShowCategorySchema`, `VideoCardProps`, etc.).
-- `src/hooks/useDebounce.ts` — the only hook in the project; debounces a value over a delay (default 500ms), used by `SearchBar`.
 - `prisma/schema.prisma` — the `Video` model (MongoDB datasource).
 
 **Data flow pattern**: each route defines `validateSearch` (a Zod-shaped `{ category, title }`) and a `loader` that branches into a `kind: 'search' | 'browse'` result — `'search'` calls a `createServerFn`-wrapped search function, `'browse'` calls a route-local `createServerFn` wrapping the relevant `models/videos.ts` getters. Components read the result via `Route.useLoaderData()` and switch on `kind`. Follow this pattern for new routes — never call Prisma functions directly from a component.

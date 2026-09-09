@@ -66,7 +66,6 @@ function SlugPage() {
   return (
     <>
       <SearchBar
-        key={data.config.category}
         label={data.config.searchLabel}
         category={data.config.category}
       />
