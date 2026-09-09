@@ -4,52 +4,6 @@
   position: relative;
 }
 
-.bookmark-icon {
-  height: 14px;
-  width: 12px;
-}
-
-.bookmark-full-icon {
-  fill: var(--color-white);
-}
-
-.bookmark-empty-icon {
-  stroke: var(--color-white);
-  stroke-width: 1.5;
-}
-
-.bookmark {
-  align-items: center;
-  background-color: var(--color-dark-blue);
-  border-radius: 50%;
-  display: flex;
-  height: 32px;
-  justify-content: center;
-  opacity: 0.5;
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  width: 32px;
-
-  @media screen and (width >= 48em) {
-    right: 1rem;
-    top: 1rem;
-  }
-
-  &:hover {
-    background-color: var(--color-white);
-    opacity: 1;
-
-    > .bookmark-empty-icon {
-      stroke: var(--color-dark-blue);
-    }
-
-    > .bookmark-full-icon {
-      fill: var(--color-dark-blue);
-    }
-  }
-}
-
 .play-overlay {
   align-items: center;
   background-color: rgb(0 0 0 / 50%);
@@ -83,10 +37,6 @@
 .card-image:hover .play-overlay {
   cursor: pointer;
   opacity: 1;
-}
-
-.card-image:hover .bookmark {
-  z-index: 1;
 }
 
 .play-text {

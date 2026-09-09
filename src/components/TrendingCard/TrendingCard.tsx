@@ -1,19 +1,10 @@
-import { useActionState } from 'react'
-import { useRouter } from '@tanstack/react-router'
-
-import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg?react'
-import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg?react'
 import MovieCategoryIcon from '@/assets/icon-category-movie.svg?react'
 import TVCategoryIcon from '@/assets/icon-category-tv.svg?react'
 import PlayIcon from '@/assets/icon-play.svg?react'
-import { toggleBookmark } from '@/lib/actions'
+import { BookmarkButton } from '@/components/BookmarkButton'
 import type { VideoCardProps } from '@/types'
 
 import styles from './TrendingCard.module.css'
-
-const initialState = {
-  message: '',
-}
 
 export function TrendingCard({
   title,
@@ -23,50 +14,15 @@ export function TrendingCard({
   isBookmarked,
   thumbnail,
 }: VideoCardProps) {
-  const router = useRouter()
-  const [state, formAction] = useActionState(
-    async (_prevState: typeof initialState, formData: FormData) => {
-      const result = await toggleBookmark({ data: formData })
-      await router.invalidate()
-      return result
-    },
-    initialState
-  )
-
   return (
     <>
       <div className={styles.card}>
         <div className={styles['card-image']}>
-          <form action={formAction}>
-            <input type="hidden" name="videoTitle" value={title} />
-            <button
-              className={`bookmark-button ${styles.bookmark}`}
-              type="submit"
-              name="action"
-              value={isBookmarked ? 'remove-bookmark' : 'set-bookmark'}
-            >
-              {isBookmarked ? (
-                <>
-                  <BookmarkFullIcon
-                    className={`${styles['bookmark-icon']} ${styles['bookmark-full-icon']}`}
-                  />
-                  <span className="screen-reader">
-                    Remove bookmark from {title}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <BookmarkEmptyIcon
-                    className={`${styles['bookmark-icon']} ${styles['bookmark-empty-icon']}`}
-                  />
-                  <span className="screen-reader">Bookmark {title}</span>
-                </>
-              )}
-            </button>
-            <p className="screen-reader" aria-live="polite" role="status">
-              {state.message}
-            </p>
-          </form>
+          <BookmarkButton
+            title={title}
+            isBookmarked={isBookmarked}
+            className={styles['bookmark-position']}
+          />
           <picture>
             <source
               media="(max-width: 767px)"

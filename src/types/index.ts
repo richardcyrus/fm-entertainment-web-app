@@ -14,6 +14,12 @@ export type SearchBarProps = {
   category: ShowCategory
 }
 
+export type BookmarkButtonProps = {
+  title: string
+  isBookmarked: boolean
+  className?: string
+}
+
 export type VideoCardProps = {
   id?: string
   title: string
