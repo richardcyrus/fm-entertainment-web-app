@@ -1,4 +1,5 @@
 import { useActionState } from 'react'
+import { useRouter } from '@tanstack/react-router'
 
 import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg?react'
 import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg?react'
@@ -22,9 +23,13 @@ export function TrendingCard({
   isBookmarked,
   thumbnail,
 }: VideoCardProps) {
+  const router = useRouter()
   const [state, formAction] = useActionState(
-    (_prevState: typeof initialState, formData: FormData) =>
-      toggleBookmark({ data: formData }),
+    async (_prevState: typeof initialState, formData: FormData) => {
+      const result = await toggleBookmark({ data: formData })
+      await router.invalidate()
+      return result
+    },
     initialState
   )
 
