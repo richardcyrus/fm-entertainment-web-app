@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest'
-import 'jest-axe/extend-expect'
+import 'vitest-axe/extend-expect'
 import { vi } from 'vitest'
 
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
@@ -7,3 +7,5 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
   unobserve: vi.fn(),
   disconnect: vi.fn(),
 }))
+
+window.scrollTo = vi.fn()

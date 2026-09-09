@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
-import { axe } from 'jest-axe'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 
 import { Navigation } from '@/components/Navigation'
 import { renderWithRouter } from '@/test/render-with-router'

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
-import { axe } from 'jest-axe'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 
 import { SearchBar } from '@/components/SearchBar'
 import { renderWithRouter } from '@/test/render-with-router'

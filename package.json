@@ -21,10 +21,10 @@
     "generate-routes": "tsr generate",
     "build": "vite build",
     "preview": "vite preview",
-    "fix": "concurrently --raw pnpm:fix:*",
+    "fix": "concurrently pnpm:fix:*",
     "fix:code": "eslint  --fix \"**/*.[tj]s?(x)\"",
     "fix:css": "stylelint \"**/*.css\" --cache --cache-location ./node_modules/.cache/stylelint --fix",
-    "lint": "concurrently --raw pnpm:lint:*",
+    "lint": "concurrently pnpm:lint:*",
     "lint:code": "eslint \"**/*.[tj]s?(x)\"",
     "lint:css": "stylelint './**/*.css' --fix --cache --cache-location ./node_modules/.cache/stylelint",
     "format": "prettier --write './**/*.{css,js,jsx,ts,tsx,json.md}'",
@@ -33,7 +33,6 @@
     "test": "vitest run",
     "db:generate": "dotenv -e .env.local -- prisma generate",
     "db:push": "dotenv -e .env.local -- prisma db push",
-    "db:migrate": "dotenv -e .env.local -- prisma migrate dev",
     "db:studio": "dotenv -e .env.local -- prisma studio",
     "db:seed": "dotenv -e .env.local -- prisma db seed"
   },
@@ -48,8 +47,7 @@
     "nitro": "3.0.260610-beta",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "swiper": "^11.2.10",
-    "typescript": "5.5.4",
+    "swiper": "^14.2.0",
     "zod": "^4.5.4"
   },
   "devDependencies": {
@@ -60,16 +58,14 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
-    "@types/jest-axe": "^3.5.9",
     "@types/node": "^22.20.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "concurrently": "^10.0.5",
     "dotenv-cli": "^11.0.0",
-    "eslint": "^9.39.5",
+    "eslint": "^10.10.0",
     "husky": "^9.1.7",
-    "jest-axe": "^11.0.0",
     "jsdom": "^30.0.1",
     "lint-staged": "^17.5.0",
     "micromatch": "^4.0.8",
@@ -82,31 +78,10 @@
     "typescript": "^6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-svgr": "^5.2.0",
-    "vitest": "^5.0.0"
-  },
-  "browserslist": {
-    "production": [
-      ">= 0.5%",
-      "last 2 major versions",
-      "not dead",
-      "Chrome >= 64",
-      "Edge >= 79",
-      "Firefox >= 67",
-      "Firefox ESR",
-      "opera >= 51",
-      "iOS >= 12",
-      "Safari >= 12",
-      "not Explorer <= 11",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 edge version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "vitest": "^5.0.0",
+    "vitest-axe": "1.0.0-pre.5"
   },
   "volta": {
-    "node": "24.12.0"
+    "node": "24.20.0"
   }
 }
