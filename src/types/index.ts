@@ -9,6 +9,11 @@ export const ShowCategorySchema = z.union([
 
 export type ShowCategory = z.infer<typeof ShowCategorySchema>
 
+export const RouteSearchSchema = z.object({
+  category: z.string().optional(),
+  title: z.string().optional(),
+})
+
 export type SearchBarProps = {
   label: string
   category: ShowCategory

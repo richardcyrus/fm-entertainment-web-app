@@ -1,17 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import * as z from 'zod'
 
 import { SearchBar } from '@/components/SearchBar'
+import { SearchResultsGrid } from '@/components/SearchResultsGrid'
 import { VideoGrid } from '@/components/VideoGrid'
-import { searchShowsServerFn } from '@/lib/show-search-server-fn'
+import { resolveSearchLoaderData } from '@/lib/show-search-server-fn'
 import { getBookmarkedMovies, getBookmarkedTVSeries } from '@/models/videos'
+import { RouteSearchSchema } from '@/types'
 import type { VideoCardProps } from '@/types'
-
-const bookmarkedSearchSchema = z.object({
-  category: z.string().optional(),
-  title: z.string().optional(),
-})
 
 const getBookmarkedShows = createServerFn({ method: 'GET' }).handler(
   async () => {
@@ -25,19 +21,11 @@ const getBookmarkedShows = createServerFn({ method: 'GET' }).handler(
 )
 
 export const Route = createFileRoute('/bookmarked')({
-  validateSearch: bookmarkedSearchSchema,
+  validateSearch: RouteSearchSchema,
   loaderDeps: ({ search }) => search,
   loader: async ({ deps }) => {
     if (deps.title) {
-      const searchResult = (await searchShowsServerFn({
-        data: { category: deps.category ?? 'Bookmarked', title: deps.title },
-      })) as unknown as VideoCardProps[]
-
-      return {
-        kind: 'search' as const,
-        searchResult,
-        searchTitle: deps.title,
-      }
+      return resolveSearchLoaderData(deps.category ?? 'Bookmarked', deps.title)
     }
 
     const { movies, tvSeries } = await getBookmarkedShows()
@@ -58,11 +46,9 @@ function BookmarkedPage() {
     <>
       <SearchBar label="Search for bookmarked shows" category="Bookmarked" />
       {data.kind === 'search' ? (
-        <VideoGrid
-          title={`Found ${data.searchResult.length} result${
-            data.searchResult.length > 1 ? 's' : ''
-          } for ‘${data.searchTitle}’`}
-          shows={data.searchResult}
+        <SearchResultsGrid
+          searchResult={data.searchResult}
+          searchTitle={data.searchTitle}
         />
       ) : (
         <>

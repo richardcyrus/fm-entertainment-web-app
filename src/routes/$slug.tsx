@@ -1,17 +1,13 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import * as z from 'zod'
 
 import { SearchBar } from '@/components/SearchBar'
+import { SearchResultsGrid } from '@/components/SearchResultsGrid'
 import { VideoGrid } from '@/components/VideoGrid'
-import { searchShowsServerFn } from '@/lib/show-search-server-fn'
+import { resolveSearchLoaderData } from '@/lib/show-search-server-fn'
 import { getMovies, getTVSeries } from '@/models/videos'
+import { RouteSearchSchema } from '@/types'
 import type { ShowCategory, VideoCardProps } from '@/types'
-
-const slugSearchSchema = z.object({
-  category: z.string().optional(),
-  title: z.string().optional(),
-})
 
 const slugConfig: Record<
   string,
@@ -36,7 +32,7 @@ const getSlugShows = createServerFn({ method: 'GET' })
   )
 
 export const Route = createFileRoute('/$slug')({
-  validateSearch: slugSearchSchema,
+  validateSearch: RouteSearchSchema,
   loaderDeps: ({ search }) => search,
   loader: async ({ params, deps }) => {
     const config = slugConfig[params.slug]
@@ -47,19 +43,12 @@ export const Route = createFileRoute('/$slug')({
     }
 
     if (deps.title) {
-      const searchResult = (await searchShowsServerFn({
-        data: {
-          category: deps.category ?? config.category,
-          title: deps.title,
-        },
-      })) as unknown as VideoCardProps[]
+      const searchData = await resolveSearchLoaderData(
+        deps.category ?? config.category,
+        deps.title
+      )
 
-      return {
-        kind: 'search' as const,
-        config,
-        searchResult,
-        searchTitle: deps.title,
-      }
+      return { ...searchData, config }
     }
 
     const shows = (await getSlugShows({
@@ -77,15 +66,14 @@ function SlugPage() {
   return (
     <>
       <SearchBar
+        key={data.config.category}
         label={data.config.searchLabel}
         category={data.config.category}
       />
       {data.kind === 'search' ? (
-        <VideoGrid
-          title={`Found ${data.searchResult.length} result${
-            data.searchResult.length > 1 ? 's' : ''
-          } for ‘${data.searchTitle}’`}
-          shows={data.searchResult}
+        <SearchResultsGrid
+          searchResult={data.searchResult}
+          searchTitle={data.searchTitle}
         />
       ) : (
         <VideoGrid title={data.config.gridTitle} shows={data.shows} />
