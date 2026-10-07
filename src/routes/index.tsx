@@ -8,7 +8,6 @@ import { VideoGrid } from '@/components/VideoGrid'
 import { resolveSearchLoaderData } from '@/lib/server-fns'
 import { getRecommendedShows, getTrendingShows } from '@/models/videos'
 import { RouteSearchSchema } from '@/types'
-import type { VideoCardProps } from '@/types'
 
 const getHomeShows = createServerFn({ method: 'GET' }).handler(async () => {
   const [trendingShows, recommendedShows] = await Promise.all([
@@ -31,8 +30,8 @@ export const Route = createFileRoute('/')({
 
     return {
       kind: 'browse' as const,
-      trendingShows: trendingShows as unknown as VideoCardProps[],
-      recommendedShows: recommendedShows as unknown as VideoCardProps[],
+      trendingShows: trendingShows,
+      recommendedShows: recommendedShows,
     }
   },
   component: Home,

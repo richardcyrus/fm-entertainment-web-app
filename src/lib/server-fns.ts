@@ -3,7 +3,6 @@ import * as z from 'zod'
 
 import { changeBookmark, showSearch } from '@/lib/server-fns.server'
 import { ShowCategorySchema } from '@/types'
-import type { VideoCardProps } from '@/types'
 
 const searchSchema = z.object({
   category: ShowCategorySchema,
@@ -22,9 +21,9 @@ export const searchShowsServerFn = createServerFn({ method: 'GET' })
   .handler(({ data }) => showSearch(data.category, data.title))
 
 export async function resolveSearchLoaderData(category: string, title: string) {
-  const searchResult = (await searchShowsServerFn({
+  const searchResult = await searchShowsServerFn({
     data: { category, title },
-  })) as unknown as VideoCardProps[]
+  })
 
   return {
     kind: 'search' as const,

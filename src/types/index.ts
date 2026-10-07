@@ -25,31 +25,38 @@ export type BookmarkButtonProps = {
   className?: string
 }
 
-export type VideoCardProps = {
-  id?: string
-  title: string
-  thumbnail: {
-    trending:
-      | ({
-          small: string | undefined
-          medium: string | undefined
-          large: string | undefined
-        } & {})
-      | null
-    regular:
-      | ({
-          small: string | undefined
-          medium: string | undefined
-          large: string | undefined
-        } & {})
-      | null
-  }
-  year: number
-  category: string
-  rating: string
-  isBookmarked: boolean
-  isTrending: boolean
-}
+const ThumbnailUrlsSchema = z.object({
+  small: z
+    .string()
+    .nullable()
+    .transform((url) => url ?? undefined),
+  medium: z
+    .string()
+    .nullable()
+    .transform((url) => url ?? undefined),
+  large: z
+    .string()
+    .nullable()
+    .transform((url) => url ?? undefined),
+})
+
+export const VideoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  thumbnail: z.object({
+    trending: ThumbnailUrlsSchema.nullable(),
+    regular: ThumbnailUrlsSchema.nullable(),
+  }),
+  year: z.number(),
+  category: z.string(),
+  rating: z.string(),
+  isBookmarked: z.boolean(),
+  isTrending: z.boolean(),
+})
+
+export const VideoListSchema = z.array(VideoSchema)
+
+export type VideoCardProps = z.infer<typeof VideoSchema>
 
 export type TrendingRowProps = {
   shows: VideoCardProps[]

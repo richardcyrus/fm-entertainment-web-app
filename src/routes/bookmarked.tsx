@@ -7,7 +7,6 @@ import { VideoGrid } from '@/components/VideoGrid'
 import { resolveSearchLoaderData } from '@/lib/server-fns'
 import { getBookmarkedMovies, getBookmarkedTVSeries } from '@/models/videos'
 import { RouteSearchSchema } from '@/types'
-import type { VideoCardProps } from '@/types'
 
 const getBookmarkedShows = createServerFn({ method: 'GET' }).handler(
   async () => {
@@ -32,8 +31,8 @@ export const Route = createFileRoute('/bookmarked')({
 
     return {
       kind: 'browse' as const,
-      movies: movies as unknown as VideoCardProps[],
-      tvSeries: tvSeries as unknown as VideoCardProps[],
+      movies: movies,
+      tvSeries: tvSeries,
     }
   },
   component: BookmarkedPage,

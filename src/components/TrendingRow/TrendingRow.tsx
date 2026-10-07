@@ -39,6 +39,7 @@ export function TrendingRow(props: TrendingRowProps) {
           {props.shows.map((show) => (
             <SwiperSlide key={show.id} className={styles['swiper-slide']}>
               <TrendingCard
+                id={show.id}
                 title={show.title}
                 thumbnail={show.thumbnail}
                 year={show.year}

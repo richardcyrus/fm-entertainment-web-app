@@ -7,7 +7,7 @@ import { VideoGrid } from '@/components/VideoGrid'
 import { resolveSearchLoaderData } from '@/lib/server-fns'
 import { getMovies, getTVSeries } from '@/models/videos'
 import { RouteSearchSchema } from '@/types'
-import type { ShowCategory, VideoCardProps } from '@/types'
+import type { ShowCategory } from '@/types'
 
 const slugConfig: Record<
   string,
@@ -51,9 +51,7 @@ export const Route = createFileRoute('/$slug')({
       return { ...searchData, config }
     }
 
-    const shows = (await getSlugShows({
-      data: params.slug,
-    })) as unknown as VideoCardProps[]
+    const shows = await getSlugShows({ data: params.slug })
 
     return { kind: 'browse' as const, config, shows }
   },

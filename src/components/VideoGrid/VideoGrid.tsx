@@ -17,6 +17,7 @@ export function VideoGrid({
         {shows.map((show: VideoCardProps) => (
           <VideoCard
             key={show.id}
+            id={show.id}
             title={show.title}
             thumbnail={show.thumbnail}
             year={show.year}
