@@ -21,9 +21,13 @@ const getHomeShows = createServerFn({ method: 'GET' }).handler(async () => {
 export const Route = createFileRoute('/')({
   validateSearch: RouteSearchSchema,
   loaderDeps: ({ search }) => search,
-  loader: async ({ deps }) => {
+  loader: async ({ deps, abortController }) => {
     if (deps.title) {
-      return resolveSearchLoaderData(deps.category ?? 'All', deps.title)
+      return resolveSearchLoaderData(
+        deps.category ?? 'All',
+        deps.title,
+        abortController.signal
+      )
     }
 
     const { trendingShows, recommendedShows } = await getHomeShows()

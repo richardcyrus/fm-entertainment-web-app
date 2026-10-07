@@ -34,7 +34,7 @@ const getSlugShows = createServerFn({ method: 'GET' })
 export const Route = createFileRoute('/$slug')({
   validateSearch: RouteSearchSchema,
   loaderDeps: ({ search }) => search,
-  loader: async ({ params, deps }) => {
+  loader: async ({ params, deps, abortController }) => {
     const config = slugConfig[params.slug]
 
     /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */
@@ -45,7 +45,8 @@ export const Route = createFileRoute('/$slug')({
     if (deps.title) {
       const searchData = await resolveSearchLoaderData(
         deps.category ?? config.category,
-        deps.title
+        deps.title,
+        abortController.signal
       )
 
       return { ...searchData, config }

@@ -20,9 +20,14 @@ export const searchShowsServerFn = createServerFn({ method: 'GET' })
   )
   .handler(({ data }) => showSearch(data.category, data.title))
 
-export async function resolveSearchLoaderData(category: string, title: string) {
+export async function resolveSearchLoaderData(
+  category: string,
+  title: string,
+  signal?: AbortSignal
+) {
   const searchResult = await searchShowsServerFn({
     data: { category, title },
+    signal,
   })
 
   return {
