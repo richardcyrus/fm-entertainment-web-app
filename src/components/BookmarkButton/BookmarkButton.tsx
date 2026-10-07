@@ -3,7 +3,7 @@ import { useRouter } from '@tanstack/react-router'
 
 import BookmarkEmptyIcon from '@/assets/icon-bookmark-empty.svg?react'
 import BookmarkFullIcon from '@/assets/icon-bookmark-full.svg?react'
-import { toggleBookmark } from '@/lib/actions'
+import { toggleBookmark } from '@/lib/server-fns'
 import type { BookmarkButtonProps } from '@/types'
 
 import styles from './BookmarkButton.module.css'

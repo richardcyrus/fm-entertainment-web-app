@@ -32,10 +32,10 @@ TanStack Start (Vite + Nitro) + React 19 + TypeScript, with Prisma/MongoDB as th
 
 - `src/routes/` — file-based routes. `index.tsx` (home: trending + recommended, or search results), `$slug.tsx` (single dynamic route handling both `/movies` and `/tv-series`, `notFound()` for anything else), `bookmarked.tsx`, `__root.tsx` (head/meta, renders `Navigation`, `notFoundComponent`).
 - `src/router.tsx` — router instance factory (`getRouter`), registers the route tree for typed navigation.
-- `src/lib/actions.ts` — `toggleBookmark`, a `createServerFn` (POST) bound to the bookmark buttons in `VideoCard`/`TrendingCard` via React's `useActionState`.
+- `src/lib/server-fns.ts` — client-safe module holding the shared `createServerFn` wrappers: `toggleBookmark` (POST, bound to the bookmark buttons via `useActionState`), `searchShowsServerFn` and `resolveSearchLoaderData` (used by route loaders). Each wrapper Zod-validates its input, then calls into `lib/server-fns.server.ts`.
 - `src/models/videos.ts` — the Prisma data-access layer: plain async functions (trending, recommended, movies, TV series, bookmarks, search, `setBookmarkedState`). Add new queries here, not inline in routes.
 - `src/lib/prisma.ts` — singleton `PrismaClient` (dev hot-reload caching pattern). Always import from here.
-- `src/lib/show-search.ts` — `showSearch`, a plain function that Zod-validates search input before delegating to `models/videos.ts`; `searchShowsServerFn`/`resolveSearchLoaderData` wrap it in a `createServerFn`, used by route loaders so Prisma never reaches the client bundle. Kept in one file, but `showSearch` stays separately exported since `createServerFn`-wrapped code can't be called outside Start's runtime.
+- `src/lib/server-fns.server.ts` — server-only logic (`showSearch`, `changeBookmark`) that imports `models/videos.ts`. Only import it from inside `createServerFn` handlers so Prisma (and its `node:url` use) never reaches the client bundle; `.server.ts` files are plain functions and stay testable outside Start's runtime.
 - `src/types/index.ts` — shared Zod schemas and TS types (`ShowCategorySchema`, `VideoCardProps`, etc.).
 - `prisma/schema.prisma` — the `Video` model (MongoDB datasource).
 
@@ -43,7 +43,7 @@ TanStack Start (Vite + Nitro) + React 19 + TypeScript, with Prisma/MongoDB as th
 
 **`createServerFn` is not portable outside Start's runtime**: it relies on request context (AsyncLocalStorage) set up by the Vite/Nitro plugin. Don't assume a `createServerFn`-wrapped function can be called from arbitrary Node code, tests, or scripts without going through the Start/Nitro server.
 
-**Validation boundary**: Zod schemas validate inputs at the edges (`lib/show-search.ts`, `lib/actions.ts`) before they reach the Prisma layer. Follow this pattern for new server functions rather than trusting raw input.
+**Validation boundary**: Zod schemas validate inputs at the edges (the wrappers in `lib/server-fns.ts`) before they reach the Prisma layer. Follow this pattern for new server functions rather than trusting raw input.
 
 **Component structure**: each component lives in `src/components/<Name>/` with `<Name>.tsx`, a colocated `.module.css`, an `index.tsx` barrel (`export * from './<Name>'`), and optionally `__tests__/`. Import via the barrel (`@/components/SearchBar`). Path aliases `@/*` → `src/*` and `@/public/*` → `public/*` are resolved by Vite's built-in `resolve.tsconfigPaths` (no separate plugin needed).
 
