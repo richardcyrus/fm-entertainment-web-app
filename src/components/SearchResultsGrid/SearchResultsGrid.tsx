@@ -11,7 +11,7 @@ export function SearchResultsGrid({
   return (
     <VideoGrid
       title={`Found ${searchResult.length} result${
-        searchResult.length > 1 ? 's' : ''
+        searchResult.length === 1 ? '' : 's'
       } for ‘${searchTitle}’`}
       shows={searchResult}
     />
