@@ -35,8 +35,7 @@ TanStack Start (Vite + Nitro) + React 19 + TypeScript, with Prisma/MongoDB as th
 - `src/lib/actions.ts` — `toggleBookmark`, a `createServerFn` (POST) bound to the bookmark buttons in `VideoCard`/`TrendingCard` via React's `useActionState`.
 - `src/models/videos.ts` — the Prisma data-access layer: plain async functions (trending, recommended, movies, TV series, bookmarks, search, `setBookmarkedState`). Add new queries here, not inline in routes.
 - `src/lib/prisma.ts` — singleton `PrismaClient` (dev hot-reload caching pattern). Always import from here.
-- `src/lib/show-search.ts` — plain function; Zod-validates search input before delegating to `models/videos.ts`.
-- `src/lib/show-search-server-fn.ts` — `createServerFn` wrapper around `show-search.ts`, used by route loaders so Prisma never reaches the client bundle.
+- `src/lib/show-search.ts` — `showSearch`, a plain function that Zod-validates search input before delegating to `models/videos.ts`; `searchShowsServerFn`/`resolveSearchLoaderData` wrap it in a `createServerFn`, used by route loaders so Prisma never reaches the client bundle. Kept in one file, but `showSearch` stays separately exported since `createServerFn`-wrapped code can't be called outside Start's runtime.
 - `src/types/index.ts` — shared Zod schemas and TS types (`ShowCategorySchema`, `VideoCardProps`, etc.).
 - `prisma/schema.prisma` — the `Video` model (MongoDB datasource).
 
