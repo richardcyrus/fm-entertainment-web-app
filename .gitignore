@@ -229,4 +229,4 @@ cypress/downloads/
 /playwright-report/
 /playwright/.cache/
 
-/src/generated/prisma
+# /src/generated/prisma
