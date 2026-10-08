@@ -17,12 +17,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `postinstall` runs `prisma generate` automatically after `pnpm install`.
 - Package manager is pnpm (only `pnpm-lock.yaml` is committed; there is no `package-lock.json`).
 - Git hooks are managed by Husky (`.husky/pre-commit` runs `lint-staged`); commits will auto-lint/format staged files.
-- CI (`.github/workflows/tests.yml`) runs `npm ci` / `npm run lint` / `npm run test` / `npm run build` on push/PR to main/master, pinned to Node 24.12.0 via `actions/setup-node`. **Known inconsistency**: the workflow still uses `npm ci`, which requires `package-lock.json` — that file doesn't exist in this repo (only `pnpm-lock.yaml` is committed), so this job is likely broken as written. The Node version also no longer matches the Volta pin (see Environment below).
+- CI (`.github/workflows/tests.yml`) runs `pnpm install --frozen-lockfile` / `pnpm lint` / `pnpm test` / `pnpm build` on push/PR to main/master, using `pnpm/action-setup` (pnpm 11) and `actions/setup-node` with the latest Node 24.x (the Volta pin in `package.json` is an exact patch, CI tracks the 24 major).
 
 ## Environment
 
 - Requires a `DATABASE_URL` env var (MongoDB connection string) in `.env.local` (gitignored). There is no `.env.example` — check with the project owner for a connection string when setting up locally.
-- Node version is pinned via Volta (`volta.node` in package.json), currently 24.20.0 — newer than the 24.12.0 pinned in CI (see Commands above).
+- Node version is pinned via Volta (`volta.node` in package.json), currently 24.20.0; CI uses the latest Node 24.x (see Commands above).
 - `package.json` sets `"type": "module"` — plain `.js` config files are ES modules by default; anything genuinely CommonJS must use a `.cjs` extension.
 - `prisma.config.ts` loads `.env.local`/`.env` via `dotenv` and configures the schema/migrations paths and `engine: 'classic'` — this is Prisma's config-file approach, replacing env-var-only configuration.
 
