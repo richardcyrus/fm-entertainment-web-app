@@ -8,6 +8,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      # prisma.config.ts requires DATABASE_URL to load, even for `prisma generate`
+      # (run by postinstall). Nothing in CI connects to a database.
+      DATABASE_URL: mongodb://localhost:27017/ci
     steps:
     - uses: actions/checkout@v5
 
