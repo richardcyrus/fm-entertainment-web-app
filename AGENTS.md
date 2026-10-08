@@ -1,6 +1,6 @@
 # AGENTS.md
 
-TanStack Start (Vite + Nitro) + TypeScript + Prisma/MongoDB app. **`CLAUDE.md` is loaded by OpenCode
+TanStack Start (Vite + Nitro) + TypeScript + Mongoose/MongoDB app. **`CLAUDE.md` is loaded by OpenCode
 alongside this file and is the authoritative, verified reference** for setup, architecture,
 styling, and testing — defer to it on anything it covers. This file is additive only.
 

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { prisma } from '@/lib/prisma'
+import { connectDb } from '@/lib/mongoose'
 import {
   getBookmarkedMovies,
   getBookmarkedTVSeries,
@@ -11,19 +11,23 @@ import {
   searchShows,
   setBookmarkedState,
 } from '@/models/videos'
+import { VideoModel } from '@/models/video-model'
 
-vi.mock('@/lib/prisma', () => ({
-  prisma: {
-    video: {
-      findMany: vi.fn(),
-      findFirstOrThrow: vi.fn(),
-      update: vi.fn(),
-    },
+vi.mock('@/lib/mongoose', () => ({
+  connectDb: vi.fn(),
+}))
+
+vi.mock('@/models/video-model', () => ({
+  VideoModel: {
+    find: vi.fn(),
+    findOneAndUpdate: vi.fn(),
   },
 }))
 
+const lean = (rows: unknown[]) => ({ lean: () => Promise.resolve(rows) })
+
 const dbRow = {
-  id: '1',
+  _id: { toString: () => '1' },
   title: 'Beyond Earth',
   thumbnail: {
     trending: { small: 's', medium: null, large: 'l' },
@@ -39,7 +43,7 @@ const dbRow = {
 describe('videos model', () => {
   beforeEach(() => {
     vi.resetAllMocks()
-    vi.mocked(prisma.video.findMany).mockResolvedValue([dbRow] as never)
+    vi.mocked(VideoModel.find).mockReturnValue(lean([dbRow]) as never)
   })
 
   describe('getters', () => {
@@ -65,7 +69,8 @@ describe('videos model', () => {
       async (_n, fn, where) => {
         await fn()
 
-        expect(prisma.video.findMany).toHaveBeenCalledWith({ where })
+        expect(connectDb).toHaveBeenCalled()
+        expect(VideoModel.find).toHaveBeenCalledWith(where)
       }
     )
 
@@ -80,24 +85,50 @@ describe('videos model', () => {
       expect(show.thumbnail.regular).toBeNull()
     })
 
+    it('maps _id to a string id and drops it from the row', async () => {
+      const [show] = await getTrendingShows()
+
+      expect(show.id).toBe('1')
+      expect(show).not.toHaveProperty('_id')
+    })
+
+    it('treats missing thumbnail fields as absent, as lean() omits them', async () => {
+      vi.mocked(VideoModel.find).mockReturnValue(
+        lean([{ ...dbRow, thumbnail: { trending: { small: 's' } } }]) as never
+      )
+
+      const [show] = await getTrendingShows()
+
+      expect(show.thumbnail.trending).toEqual({
+        small: 's',
+        medium: undefined,
+        large: undefined,
+      })
+      expect(show.thumbnail.regular).toBeNull()
+    })
+
     it('rejects rows that do not match the schema', async () => {
-      vi.mocked(prisma.video.findMany).mockResolvedValue([
-        { ...dbRow, year: 'nineteen' },
-      ] as never)
+      vi.mocked(VideoModel.find).mockReturnValue(
+        lean([{ ...dbRow, year: 'nineteen' }]) as never
+      )
 
       await expect(getMovies()).rejects.toThrow()
     })
   })
 
   describe('searchShows', () => {
-    const where = () => vi.mocked(prisma.video.findMany).mock.calls[0][0]?.where
+    const filter = () =>
+      vi.mocked(VideoModel.find).mock.calls[0][0] as never as Record<
+        string,
+        unknown
+      >
 
     it.each(['All', 'Bookmarked'])(
       'does not filter by category for %s',
       async (category) => {
         await searchShows(category, 'earth')
 
-        expect(where()?.category).toEqual({ contains: undefined })
+        expect(filter()).not.toHaveProperty('category')
       }
     )
 
@@ -106,28 +137,40 @@ describe('videos model', () => {
       async (category) => {
         await searchShows(category, 'earth')
 
-        expect(where()?.category).toEqual({ contains: category })
-        expect(where()?.isBookmarked).toBeUndefined()
+        expect(filter().category).toBe(category)
+        expect(filter()).not.toHaveProperty('isBookmarked')
       }
     )
 
     it('restricts to bookmarked shows for the Bookmarked category', async () => {
       await searchShows('Bookmarked', 'earth')
 
-      expect(where()?.isBookmarked).toBe(true)
+      expect(filter().isBookmarked).toBe(true)
     })
 
     it('matches the title case-insensitively', async () => {
       await searchShows('All', 'EaRtH')
 
-      expect(where()?.title).toEqual({ contains: 'EaRtH', mode: 'insensitive' })
+      expect(filter().title).toEqual({ $regex: 'EaRtH', $options: 'i' })
+    })
+
+    it('escapes regex metacharacters in the title', async () => {
+      await searchShows('All', 'a.b(c)*')
+
+      expect(filter().title).toEqual({
+        $regex: 'a\\.b\\(c\\)\\*',
+        $options: 'i',
+      })
     })
   })
 
   describe('setBookmarkedState', () => {
+    const orFail = vi.fn()
+
     beforeEach(() => {
-      vi.mocked(prisma.video.findFirstOrThrow).mockResolvedValue({
-        id: 'abc',
+      orFail.mockResolvedValue({ title: 'Beyond Earth' })
+      vi.mocked(VideoModel.findOneAndUpdate).mockReturnValue({
+        orFail,
       } as never)
     })
 
@@ -137,24 +180,20 @@ describe('videos model', () => {
     ])('%s sets isBookmarked to %s', async (action, expected) => {
       await setBookmarkedState('Beyond Earth', action)
 
-      expect(prisma.video.findFirstOrThrow).toHaveBeenCalledWith({
-        where: { title: 'Beyond Earth' },
-      })
-      expect(prisma.video.update).toHaveBeenCalledWith({
-        where: { id: 'abc' },
-        data: { isBookmarked: expected },
-      })
+      expect(connectDb).toHaveBeenCalled()
+      expect(VideoModel.findOneAndUpdate).toHaveBeenCalledWith(
+        { title: 'Beyond Earth' },
+        { isBookmarked: expected },
+        { returnDocument: 'after' }
+      )
     })
 
-    it('throws and does not update when the show is not found', async () => {
-      vi.mocked(prisma.video.findFirstOrThrow).mockRejectedValue(
-        new Error('No Video found')
-      )
+    it('throws when the show is not found', async () => {
+      orFail.mockRejectedValue(new Error('No document found'))
 
       await expect(setBookmarkedState('Nope', 'set-bookmark')).rejects.toThrow(
-        'No Video found'
+        'No document found'
       )
-      expect(prisma.video.update).not.toHaveBeenCalled()
     })
   })
 })

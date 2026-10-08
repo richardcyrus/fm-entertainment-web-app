@@ -28,15 +28,15 @@ export type BookmarkButtonProps = {
 const ThumbnailUrlsSchema = z.object({
   small: z
     .string()
-    .nullable()
+    .nullish()
     .transform((url) => url ?? undefined),
   medium: z
     .string()
-    .nullable()
+    .nullish()
     .transform((url) => url ?? undefined),
   large: z
     .string()
-    .nullable()
+    .nullish()
     .transform((url) => url ?? undefined),
 })
 
@@ -44,8 +44,8 @@ export const VideoSchema = z.object({
   id: z.string(),
   title: z.string(),
   thumbnail: z.object({
-    trending: ThumbnailUrlsSchema.nullable(),
-    regular: ThumbnailUrlsSchema.nullable(),
+    trending: ThumbnailUrlsSchema.nullish().transform((urls) => urls ?? null),
+    regular: ThumbnailUrlsSchema.nullish().transform((urls) => urls ?? null),
   }),
   year: z.number(),
   category: z.string(),
