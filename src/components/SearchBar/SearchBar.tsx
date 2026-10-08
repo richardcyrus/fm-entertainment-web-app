@@ -63,8 +63,9 @@ export function SearchBar({ label, category }: SearchBarProps) {
         className={styles['search-form']}
         onSubmit={(event) => event.preventDefault()}
       >
-        <label htmlFor="search" aria-label={label}>
+        <label htmlFor="search">
           <SearchIcon className={styles['search-icon']} />
+          <span className="screen-reader">{label}</span>
         </label>
         <input
           className={styles['search-input']}
